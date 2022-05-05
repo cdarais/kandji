@@ -62,10 +62,18 @@ for f in "${fonts[@]}"; do
     then
         echo "$f not found"
         echo "$urlBase/data/$f"
-        curl "$urlBase/data/$f" -o "$library1/$f"
+        curl -s "$urlBase/data/$f" -o "$library1/$f"
+    else
+        echo "$f found"
+    fi
+
+    if [[ ! -f "$library1/$f" && ! -f "$library2/$f" && ! -f "$library3/$f" && ! -f "$library4/$f" ]]
+    then
+        exit 1
     else
         echo "$f found"
     fi
 done
+
 
 exit 0
