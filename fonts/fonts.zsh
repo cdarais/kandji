@@ -1,6 +1,6 @@
 #!/bin/zsh
 declare -a fonts 
-urlBase="https://raw.githubusercontent.com/cdarais/kandji/main/fonts"
+urlBase="https://raw.githubusercontent.com/cdarais/kandji/blob/main/fonts"
 library1="/Library/Fonts"
 library2="/System/Library/Fonts"
 library3="$library2/Supplemental"
@@ -59,6 +59,6 @@ for f in "${fonts[@]}"; do
 
  if [[ ! -f "$library1/$f" && ! -f "$library2/$f" && ! -f "$library3/$f" && ! -f "$library4/$f" ]]; then
         echo "$f not found"
-        curl -O "$library1/$f" "$urlBase/data/$f"
+        curl --output "$library1/$f" "$urlBase/data/$f"
     fi
 done
