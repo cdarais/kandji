@@ -2,7 +2,7 @@
 declare -a fonts 
 
 fonts=(
-    "Inter-Black.otf"
+    "/Library/Fonts/Inter-Black.otf"
     "Inter-ExtraBold.otf"
     "Inter-Italic.otf"
     "Inter-MediumItalic.otf"
