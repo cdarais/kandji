@@ -59,6 +59,6 @@ for f in "${fonts[@]}"; do
 
  if [[ ! -f "$library1/$f" && ! -f "$library2/$f" && ! -f "$library3/$f" && ! -f "$library4/$f" ]]; then
         echo "$f not found"
-        curl --output "$library1/$f" -s "$urlBase/data/$f"
+        curl -o - "$library1/$f" "$urlBase/data/$f"
     fi
 done
