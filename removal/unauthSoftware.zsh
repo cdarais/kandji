@@ -65,7 +65,7 @@ done < <(find / -iname "*\.app" -print0 2>/dev/null)
 for a in "${apps[@]}"; do
     for r in "${remove[@]}"; do
         if [[ $a =~ $r ]]; then
-            sudo uninstall file://$a
+            sudo rm -rf $a
         fi
     done
 done
