@@ -39,6 +39,7 @@ appExclusions=(
 
 remove=(
     "1Password 7.app"
+    "Electric.app"
     # "GarageBand.app"
     # "iMovie.app"
     "Keynote.app"
