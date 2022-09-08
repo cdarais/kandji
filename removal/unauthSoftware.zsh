@@ -39,11 +39,14 @@ appExclusions=(
 
 remove=(
     "1Password 7.app"
+    # "Anaconda.app"
     "Electric.app"
-    # "GarageBand.app"
+    "GarageBand.app"
     # "iMovie.app"
     "Keynote.app"
+    "Magnet.app"
     "Numbers.app"
+    # "Notion.app"
     "Pages.app"
 )
 
