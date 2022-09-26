@@ -38,8 +38,8 @@ appExclusions=(
 )
 
 remove=(
-    ".Microsoft Excel.app"
-    ".Microsoft Word.app"
+    # ".Microsoft Excel.app"
+    # ".Microsoft Word.app"
     "1Password 7.app"
     # "Anaconda.app"
     "Electric.app"
