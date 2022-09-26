@@ -38,6 +38,8 @@ appExclusions=(
 )
 
 remove=(
+    ".Microsoft Excel.app"
+    ".Microsoft Word.app"
     "1Password 7.app"
     # "Anaconda.app"
     "Electric.app"
@@ -45,6 +47,8 @@ remove=(
     # "iMovie.app"
     "Keynote.app"
     "Magnet.app"
+    "Microsoft Excel.app.installBackup"
+    "Microsoft Word.app.installBackup"
     "Numbers.app"
     # "Notion.app"
     "Pages.app"
