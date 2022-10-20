@@ -1,5 +1,5 @@
 [
     {
-        "app_id":"1Password", "source": "Identified Developer", "bundle_id": "com.1password.1password", "path": "/Applications/1Password.app"
+        "app_name":"1Password", "source": "Identified Developer", "bundle_id": "com.1password.1password", "path": "/Applications/1Password.app"
     }
 ]
