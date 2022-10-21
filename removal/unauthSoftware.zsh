@@ -43,7 +43,7 @@ remove=(
     "1Password 7.app"
     # "Anaconda.app"
     "Electric.app"
-    "GarageBand.app"
+    # "GarageBand.app"
     # "iMovie.app"
     "Keynote.app"
     "Magnet.app"
