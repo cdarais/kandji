@@ -65,7 +65,7 @@
     { "app_name": "Google Slides", "source": "Identified Developer", "bundle_id": "com.google.drivefs.shortcuts.slides", "path": "/Applications/Google Slides.app" },
     { "app_name": "GoPro Webcam", "source": "Identified Developer", "bundle_id": "GoPro.GoPro-Webcam", "path": "/Applications/GoPro Webcam.app" },
     { "app_name": "GPG Keychain", "source": "Identified Developer", "bundle_id": "org.gpgtools.gpgkeychain", "path": "/Applications/GPG Keychain.app" },
-    { "app_name": "Grammarly Desktop", "source": "Identified Developer", "bundle_id": "com.grammarly.Project Llama", "path": "/Applications/Grammarly Desktop.app" },
+    { "app_name": "Grammarly Desktop", "source": "Identified Developer", "bundle_id": "com.grammarly.ProjectLlama", "path": "/Applications/Grammarly Desktop.app" },
     { "app_name": "Grammarly for Safari", "source": "Apple Business Manager", "bundle_id": "com.grammarly.safari.extension", "path": "/Applications/Grammarly for Safari.app" },
     { "app_name": "Grapher", "source": "Apple", "bundle_id": "com.apple.grapher", "path": "/System/Applications/Utilities/Grapher.app" },
     { "app_name": "Hidden Bar", "source": "Apple Business Manager", "bundle_id": "com.dwarvesv.minimalbar", "path": "/Applications/Hidden Bar.app" },
