@@ -9,12 +9,14 @@ $approvedAppsUrl = "https://raw.githubusercontent.com/cdarais/kandji/main/remova
 $headers = New-Object "System.Collections.Generic.Dictionary[[String],[String]]"
 $headers.Add("Authorization", "Bearer $token")
 
+$ProgressPreference = 'SilentlyContinue'
 $allowedApps = (Invoke-WebRequest -uri $approvedAppsUrl).Content | ConvertFrom-Json -depth 100
 
 $deviceID = ((Invoke-WebRequest -Uri "$baseUrl/devices?device_name=$serial" -Headers $headers -Method Get).Content | ConvertFrom-Json -Depth 100).device_id
 
 $foundApps = ((Invoke-WebRequest -Uri "$baseUrl/devices/$deviceID/apps" -Headers $headers -Method Get).Content | ConvertFrom-Json -Depth 100).apps | Select-Object "app_name", "bundle_id", "source", "path", "process"
 
+$ProgressPreference = 'Continue'
 $noAppFound= $true
 
 foreach ($app in $foundApps) {
