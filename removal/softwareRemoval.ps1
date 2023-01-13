@@ -6,16 +6,14 @@ system_profiler SPHardwareDataType | awk '/Serial/ {print $4}'
 $token = "e1df0410-4913-4e1d-9e09-7f99fe813f8f"
 $baseUrl = "https://workboard.clients.us-1.kandji.io/api/v1"
 $approvedAppsUrl = "https://raw.githubusercontent.com/cdarais/kandji/main/removal/approvedApps.json"
-$ProgressPreference = 'SilentlyContinue'
-$allowedApps = (Invoke-WebRequest -uri $approvedAppsUrl).Content | ConvertFrom-Json -depth 100
 $headers = New-Object "System.Collections.Generic.Dictionary[[String],[String]]"
 $headers.Add("Authorization", "Bearer $token")
+
+$allowedApps = (Invoke-WebRequest -uri $approvedAppsUrl).Content | ConvertFrom-Json -depth 100
 
 $deviceID = ((Invoke-WebRequest -Uri "$baseUrl/devices?device_name=$serial" -Headers $headers -Method Get).Content | ConvertFrom-Json -Depth 100).device_id
 
 $foundApps = ((Invoke-WebRequest -Uri "$baseUrl/devices/$deviceID/apps" -Headers $headers -Method Get).Content | ConvertFrom-Json -Depth 100).apps | Select-Object "app_name", "bundle_id", "source", "path", "process"
-
-$ProgressPreference = 'Continue'
 
 $noAppFound= $true
 

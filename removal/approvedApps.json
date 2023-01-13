@@ -146,6 +146,7 @@
     { "app_name": "Stocks", "source": "Apple", "bundle_id": "com.apple.stocks", "path": "/System/Applications/Stocks.app" },
     { "app_name": "Stoplight Studio", "source": "Identified Developer", "bundle_id": "com.stoplight.studio", "path": "/Applications/Stoplight Studio.app" },
     { "app_name": "Stream Deck", "source": "Identified Developer", "bundle_id": "com.elgato.StreamDeck", "path": "/Applications/Stream Deck.app" },
+    { "app_name": "Studio 3T", "source": "Identified Developer", "bundle_id": "com.install4j.8357-7994-5030-9105.837", "path": "/Applications/Studio 3T.app" },
     { "app_name": "Sublime Merge", "source": "Identified Developer", "bundle_id": "com.sublimemerge", "path": "/Applications/Sublime Merge.app" },
     { "app_name": "Sublime Text", "source": "Identified Developer", "bundle_id": "com.sublimetext.4", "path": "/Applications/Sublime Text.app" },
     { "app_name": "System Information", "source": "Apple", "bundle_id": "com.apple.SystemProfiler", "path": "/System/Applications/Utilities/System Information.app" },
