@@ -20,18 +20,26 @@ $foundApps = ((Invoke-WebRequest -Uri "$baseUrl/devices/$deviceID/apps" -Headers
 foreach ($app in $foundApps) {
 
     if ( -not ($allowedApps | Where-Object { $_.app_name -eq $app.app_name -and $_.source -eq $app.source -and $_.bundle_id -eq $app.bundle_id -and $_.path -eq $app.path }) ) {
+        $processName = $app.app_name
+        $path = $app.path
+
+        Write-Host "removing $($app.app_name)"
         
-        do {
+        if($processName.length -gt 15) {
+            $processName = $processName.substring(0, 15)
+        }
+        while (Get-Process | Where-Object { $_.Name -eq $processName }) {
             Write-Host "killing proccess $($app.app_name)"
-            $process = Get-Process | Where-Object { $_.ProcessName -eq $app.app_name }
+            $process = Get-Process | Where-Object { $_.ProcessName -eq $processName }
             if ($process) { Stop-Process -Id $process.Id }
-        } while (Get-Process | Where-Object { $_.Name -eq $app.app_name })
+            Start-Sleep -Seconds 1
+        }
 
-        while (Test-Path -Path $app.path) {
-            # zsh -c "rm -rf $($app.path)"
-
+        while (Test-Path -Path $path) {
+            rm -rf $path
             Start-Sleep -Seconds 1
         }
         Write-Host "Successfully removed: $($app.app_name)"
     }
 }
+
