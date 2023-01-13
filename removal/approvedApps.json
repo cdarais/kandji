@@ -124,7 +124,7 @@
     { "app_name": "RedisInsight", "source": "Identified Developer", "bundle_id": "com.redislabs.redisinsight", "path": "/Applications/RedisInsight.app" },
     { "app_name": "Reminders", "source": "Apple", "bundle_id": "com.apple.reminders", "path": "/System/Applications/Reminders.app" },
     { "app_name": "RStudio", "source": "Identified Developer", "bundle_id": "org.rstudio.RStudio", "path": "/Applications/RStudio.app" },
-    { "app_name": "Safari", "source": "Apple", "bundle_id": "com.apple.Safari", "path": "/Applications/Safari.app" },
+    { "app_name": "Safari", "source": "Apple", "bundle_id": "com.apple.Safari", "path": "/System/Volumes/Preboot/Cryptexes/App/System/Applications/Safari.app" },
     { "app_name": "Screaming Frog SEO Spider", "source": "Identified Developer", "bundle_id": "uk.co.screamingfrog.seo.spider", "path": "/Applications/Screaming Frog SEO Spider.app" },
     { "app_name": "ScreenFlow", "source": "Identified Developer", "bundle_id": "net.telestream.screenflow10", "path": "/Applications/ScreenFlow.app" },
     { "app_name": "Screenshot", "source": "Apple", "bundle_id": "com.apple.screenshot.launcher", "path": "/System/Applications/Utilities/Screenshot.app" },
