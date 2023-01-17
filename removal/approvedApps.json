@@ -20,6 +20,7 @@
     { "app_name": "Azure Data Studio", "source": "Identified Developer", "bundle_id": "com.azuredatastudio.oss", "path": "/Applications/Azure Data Studio.app" },
     { "app_name": "BBEdit", "source": "Apple Business Manager", "bundle_id": "com.barebones.bbedit", "path": "/Applications/BBEdit.app" },
     { "app_name": "Beekeeper Studio", "source": "Identified Developer", "bundle_id": "io.beekeeperstudio.desktop", "path": "/Applications/Beekeeper Studio.app" },
+    { "app_name": "Beyond Compare", "source": "Identified Developer", "bundle_id": "com.ScooterSoftware.BeyondCompare", "path": "/Applications/Beyond Compare.app" },
     { "app_name": "Bitwarden", "source": "Apple Business Manager", "bundle_id": "com.bitwarden.desktop", "path": "/Applications/Bitwarden.app" },
     { "app_name": "Bluetooth File Exchange", "source": "Apple", "bundle_id": "com.apple.BluetoothFileExchange", "path": "/System/Applications/Utilities/Bluetooth File Exchange.app" },
     { "app_name": "Books", "source": "Apple", "bundle_id": "com.apple.iBooksX", "path": "/System/Applications/Books.app" },
@@ -90,6 +91,7 @@
     { "app_name": "Mail", "source": "Apple", "bundle_id": "com.apple.mail", "path": "/System/Applications/Mail.app" },
     { "app_name": "Maps", "source": "Apple", "bundle_id": "com.apple.Maps", "path": "/System/Applications/Maps.app" },
     { "app_name": "Messages", "source": "Apple", "bundle_id": "com.apple.MobileSMS", "path": "/System/Applications/Messages.app" },
+    { "app_name": "Micro Snitch", "source": "Mac App Store", "bundle_id": "at.obdev.MicroSnitch", "path": "/Applications/Micro Snitch.app" },
     { "app_name": "Microsoft Azure Storage Explorer", "source": "Identified Developer", "bundle_id": "com.microsoft.StorageExplorer", "path": "/Applications/Microsoft Azure Storage Explorer.app" },
     { "app_name": "Microsoft Edge", "source": "Identified Developer", "bundle_id": "com.microsoft.edgemac", "path": "/Applications/Microsoft Edge.app" },
     { "app_name": "Microsoft Excel", "source": "Apple Business Manager", "bundle_id": "com.microsoft.Excel", "path": "/Applications/Microsoft Excel.app" },
@@ -168,6 +170,7 @@
     { "app_name": "Weather", "source": "Apple", "bundle_id": "com.apple.weather", "path": "/System/Applications/Weather.app" },
     { "app_name": "Webex", "source": "Identified Developer", "bundle_id": "Cisco-Systems.Spark", "path": "/Applications/Webex.app" },
     { "app_name": "Wireshark", "source": "Identified Developer", "bundle_id": "org.wireshark.Wireshark", "path": "/Applications/Wireshark.app" },
-    { "app_name": "Xcode", "source": "Apple", "bundle_id": "com.apple.dt.Xcode", "path": "/Applications/Xcode.app" },
+    { "app_name": "Xcode", "source": "Apple Business Manager", "bundle_id": "com.apple.dt.Xcode", "path": "/Applications/Xcode.app" },
     { "app_name": "zoom.us", "source": "Identified Developer", "bundle_id": "us.zoom.xos", "path": "/Applications/zoom.us.app" }
+    { "app_name": "ZoomPresence", "source": "Identified Developer", "bundle_id": "us.zoom.ZoomPresence", "path": "/Applications/ZoomPresence.app" }
 ]
