@@ -3,7 +3,8 @@ $serial = zsh -c @'
 system_profiler SPHardwareDataType | awk '/Serial/ {print $4}'
 '@
 
-$token = "e1df0410-4913-4e1d-9e09-7f99fe813f8f"
+$token = $args[0]
+Write-Host $token
 $baseUrl = "https://workboard.clients.us-1.kandji.io/api/v1"
 $approvedAppsUrl = "https://raw.githubusercontent.com/cdarais/kandji/main/removal/approvedApps.json"
 $headers = New-Object "System.Collections.Generic.Dictionary[[String],[String]]"
@@ -27,11 +28,11 @@ foreach ($app in $foundApps) {
         Write-Host "removing $($app.app_name)"
         
         $sleepCounter = 0
-        Write-Host "killing proccess $($app.app_name) processId $($matches[0])"
+        Write-Host "killing proccess $($app.app_name)"
         
         while ((ps -ax | grep $app.app_name) -match '[0-9]+') {
             if ($sleepCounter -gt 60) {
-                Write-Host "failed to stop process $($app.app_name)"
+                Write-Host "failed to stop process $($app.app_name) processId $($matches[0])"
                 exit 1
             }    
             sudo Stop-Process -Id $matches[0]
