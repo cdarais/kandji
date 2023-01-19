@@ -24,16 +24,18 @@ foreach ($app in $foundApps) {
 
     if ( -not ($allowedApps | Where-Object { $_.app_name -eq $app.app_name -and $_.source -eq $app.source -and $_.bundle_id -eq $app.bundle_id -and $_.path -eq $app.path }) ) {
         $noAppFound = $false
+        $failedStops = [System.Collections.ArrayList]::new() 
+        $failedRemovals = [System.Collections.ArrayList]::new()
 
         Write-Host "removing $($app.app_name)"
         
-        $sleepCounter = 0
         Write-Host "killing proccess $($app.app_name)"
         
+        $sleepCounter = 0
         while ((ps -ax | grep $app.app_name) -match '[0-9]+') {
-            if ($sleepCounter -gt 60) {
+            if ($sleepCounter -gt 10) {
                 Write-Host "failed to stop process $($app.app_name) processId $($matches[0])"
-                exit 1
+                $failedStops.Add($app.app_name)
             }    
             sudo kill -9 $matches[0]
             Start-Sleep -Seconds 1
@@ -42,16 +44,21 @@ foreach ($app in $foundApps) {
         
         $sleepCounter = 0
         while (Test-Path -Path $app.path) {
-            if ($sleepCounter -gt 60) {
+            if ($sleepCounter -gt 10) {
                 Write-Host "failed to remove app path $($app.path)"
-                exit 2
+                $failedRemovals.Add($app.path)
             }
             sudo rm -rf $app.path
             Start-Sleep -Seconds 1
             $sleepCounter++
         }
+        
         Write-Host "Successfully removed: $($app.app_name)"
     } 
+}
+
+if ($failedStops || $failedRemovals) {
+    exit 1
 }
 
 if ($noAppFound) {
