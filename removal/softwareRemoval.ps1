@@ -23,32 +23,31 @@ foreach ($app in $foundApps) {
 
     if ( -not ($allowedApps | Where-Object { $_.app_name -eq $app.app_name -and $_.source -eq $app.source -and $_.bundle_id -eq $app.bundle_id -and $_.path -eq $app.path }) ) {
         $noAppFound = $false
-        $processName = $app.app_name
-        $path = $app.path
 
         Write-Host "removing $($app.app_name)"
         
-        if($processName.length -gt 15) {
-            $processName = $processName.substring(0, 15)
-        }
         $sleepCounter = 0
+        Write-Host "killing proccess $($app.app_name) processId $($matches[0])"
+        
         while ((ps -ax | grep $app.app_name) -match '[0-9]+') {
-            if ($sleepCounter -gt 60) { exit 1 }
-            Write-Host "killing proccess $($app.app_name) processId $($matches[0])"
-            # $process = Get-Process | Where-Object { $_.ProcessName -eq $processName }
-            # if ($process) { Stop-Process -Id $matches[0] }
+            if ($sleepCounter -gt 60) {
+                Write-Host "failed to stop process $($app.app_name)"
+                exit 1
+            }    
             sudo Stop-Process -Id $matches[0]
             Start-Sleep -Seconds 1
             $sleepCounter++
         }
         
         $sleepCounter = 0
-        while (Test-Path -Path $path) {
-            if ($sleepCounter -gt 60) { exit 2 }
-            sudo rm -rf $path
+        while (Test-Path -Path $app.path) {
+            if ($sleepCounter -gt 60) {
+                Write-Host "failed to remove app path $($app.path)"
+                exit 2
+            }
+            sudo rm -rf $app.path
             Start-Sleep -Seconds 1
             $sleepCounter++
-
         }
         Write-Host "Successfully removed: $($app.app_name)"
     } 
