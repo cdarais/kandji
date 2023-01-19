@@ -92,7 +92,6 @@
     { "app_name": "logioptionsplus", "source": "Identified Developer", "bundle_id": "com.logi.optionsplus", "path": "/Applications/logioptionsplus.app" },
     { "app_name": "LogiTune", "source": "Identified Developer", "bundle_id": "com.logitech.logitune", "path": "/Applications/LogiTune.app" },
     { "app_name": "Magnet", "source": "Mac App Store", "bundle_id": "com.crowdcafe.windowmagnet", "path": "/Applications/Magnet.app" },
-    { "app_name": "Malwarebytes", "source": "Identified Developer", "bundle_id": "com.malwarebytes.mbam.frontend.launcher", "path": "/Applications/Malwarebytes.app" },
     { "app_name": "Malwarebytes Endpoint Detection and Response", "source": "Identified Developer", "bundle_id": "com.malwarebytes.edr.helper", "path": "/Applications/.EDRMacSDK/Malwarebytes Endpoint Detection and Response.app" },
     { "app_name": "Mail", "source": "Apple", "bundle_id": "com.apple.mail", "path": "/System/Applications/Mail.app" },
     { "app_name": "Maps", "source": "Apple", "bundle_id": "com.apple.Maps", "path": "/System/Applications/Maps.app" },
