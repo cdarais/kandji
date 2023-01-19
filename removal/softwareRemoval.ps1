@@ -35,7 +35,7 @@ foreach ($app in $foundApps) {
                 Write-Host "failed to stop process $($app.app_name) processId $($matches[0])"
                 exit 1
             }    
-            sudo Stop-Process -Id $matches[0]
+            sudo kill -9 $matches[0]
             Start-Sleep -Seconds 1
             $sleepCounter++
         }
