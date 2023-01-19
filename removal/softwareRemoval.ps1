@@ -31,16 +31,24 @@ foreach ($app in $foundApps) {
         if($processName.length -gt 15) {
             $processName = $processName.substring(0, 15)
         }
-        while (Get-Process | Where-Object { $_.Name -eq $processName }) {
-            Write-Host "killing proccess $($app.app_name)"
-            $process = Get-Process | Where-Object { $_.ProcessName -eq $processName }
-            if ($process) { Stop-Process -Id $process.Id }
+        $sleepCounter = 0
+        while ((ps -ax | grep $app.app_name) -match '[0-9]+') {
+            if ($sleepCounter -gt 60) { exit 1 }
+            Write-Host "killing proccess $($app.app_name) processId $($matches[0])"
+            # $process = Get-Process | Where-Object { $_.ProcessName -eq $processName }
+            # if ($process) { Stop-Process -Id $matches[0] }
+            sudo Stop-Process -Id $matches[0]
             Start-Sleep -Seconds 1
+            $sleepCounter++
         }
-
+        
+        $sleepCounter = 0
         while (Test-Path -Path $path) {
-            rm -rf $path
+            if ($sleepCounter -gt 60) { exit 2 }
+            sudo rm -rf $path
             Start-Sleep -Seconds 1
+            $sleepCounter++
+
         }
         Write-Host "Successfully removed: $($app.app_name)"
     } 
