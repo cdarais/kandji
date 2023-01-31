@@ -52,6 +52,7 @@
     { "app_name": "Disk Utility", "source": "Apple", "bundle_id": "com.apple.DiskUtility", "path": "/System/Applications/Utilities/Disk Utility.app" },
     { "app_name": "DisplayLink Manager", "source": "Identified Developer", "bundle_id": "com.displaylink.DisplayLinkUserAgent", "path": "/Applications/DisplayLink Manager.app" },
     { "app_name": "Docker", "source": "Identified Developer", "bundle_id": "com.docker.docker", "path": "/Applications/Docker.app" },
+    { "app_name": "Evernote", "source": "Apple Business Manager", "bundle_id": "com.evernote.Evernote", "path": "/Applications/Evernote.app" },
     { "app_name": "FaceTime", "source": "Apple", "bundle_id": "com.apple.FaceTime", "path": "/System/Applications/FaceTime.app" },
     { "app_name": "Figma", "source": "Identified Developer", "bundle_id": "com.figma.Desktop", "path": "/Applications/Figma.app" },
     { "app_name": "FindMy", "source": "Apple", "bundle_id": "com.apple.findmy", "path": "/System/Applications/FindMy.app" },

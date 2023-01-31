@@ -36,6 +36,7 @@ foreach ($app in $foundApps) {
             if ($sleepCounter -gt 10) {
                 Write-Host "failed to stop process $($app.app_name) processId $($matches[0])"
                 $failedStops.Add($app.app_name)
+                break
             }    
             sudo kill -9 $matches[0]
             Start-Sleep -Seconds 1
@@ -47,6 +48,7 @@ foreach ($app in $foundApps) {
             if ($sleepCounter -gt 10) {
                 Write-Host "failed to remove app path $($app.path)"
                 $failedRemovals.Add($app.path)
+                break
             }
             sudo rm -rf $app.path
             Start-Sleep -Seconds 1
