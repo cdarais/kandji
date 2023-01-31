@@ -109,6 +109,7 @@
     { "app_name": "Migration Assistant", "source": "Apple", "bundle_id": "com.apple.MigrateAssistant", "path": "/System/Applications/Utilities/Migration Assistant.app" },
     { "app_name": "Mission Control", "source": "Apple", "bundle_id": "com.apple.exposelauncher", "path": "/System/Applications/Mission Control.app" },
     { "app_name": "MongoDB Compass", "source": "Identified Developer", "bundle_id": "com.mongodb.compass", "path": "/Applications/MongoDB Compass.app" },
+    { "app_name": "Moom", "source": "Mac App Store", "bundle_id": "com.manytricks.Moom", "path": "/Applications/Moom.app" },
     { "app_name": "Music", "source": "Apple", "bundle_id": "com.apple.Music", "path": "/System/Applications/Music.app" },
     { "app_name": "MySQLWorkbench", "source": "Identified Developer", "bundle_id": "com.oracle.workbench.MySQLWorkbench", "path": "/Applications/MySQLWorkbench.app" },
     { "app_name": "Neo4j Desktop", "source": "Identified Developer", "bundle_id": "com.neo4j.neo4j-desktop", "path": "/Applications/Neo4j Desktop.app" },
