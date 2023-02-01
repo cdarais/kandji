@@ -144,6 +144,7 @@
     { "app_name": "Shortcuts", "source": "Apple", "bundle_id": "com.apple.shortcuts", "path": "/System/Applications/Shortcuts.app" },
     { "app_name": "Siri", "source": "Apple", "bundle_id": "com.apple.siri.launcher", "path": "/System/Applications/Siri.app" },
     { "app_name": "Slack", "source": "Apple Business Manager", "bundle_id": "com.tinyspeck.slackmacgap", "path": "/Applications/Slack.app" },
+    { "app_name": "Snagit 2022", "source": "Identified Developer", "bundle_id": "com.TechSmith.Snagit2022", "path": "/Applications/Snagit 2022.app" },
     { "app_name": "SnowSQL", "source": "Identified Developer", "bundle_id": "net.snowflake.snowsql", "path": "/Applications/SnowSQL.app" },
     { "app_name": "Sourcetree", "source": "Identified Developer", "bundle_id": "com.torusknot.SourceTreeNotMAS", "path": "/Applications/Sourcetree.app" },
     { "app_name": "Splashtop Business", "source": "Identified Developer", "bundle_id": "com.splashtop.stb.macosx", "path": "/Applications/Splashtop Business.app" },

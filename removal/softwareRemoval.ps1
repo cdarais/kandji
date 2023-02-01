@@ -61,7 +61,7 @@ foreach ($app in $foundApps) {
             $sleepCounter++
         }
         
-        Write-Host "Successfully removed: $($app.app_name)"
+        Write-Host "successfully removed: $($app.app_name)"
     } 
 }
 
