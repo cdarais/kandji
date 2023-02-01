@@ -178,6 +178,7 @@
     { "app_name": "WaveLink", "source": "Identified Developer", "bundle_id": "com.elgato.WaveLink", "path": "/Applications/WaveLink.app" },
     { "app_name": "Weather", "source": "Apple", "bundle_id": "com.apple.weather", "path": "/System/Applications/Weather.app" },
     { "app_name": "Webex", "source": "Identified Developer", "bundle_id": "Cisco-Systems.Spark", "path": "/Applications/Webex.app" },
+    { "app_name": "WebStorm", "source": "Identified Developer", "bundle_id": "com.jetbrains.WebStorm", "path": "/Applications/WebStorm.app" },
     { "app_name": "Wireshark", "source": "Identified Developer", "bundle_id": "org.wireshark.Wireshark", "path": "/Applications/Wireshark.app" },
     { "app_name": "Xcode", "source": "Apple Business Manager", "bundle_id": "com.apple.dt.Xcode", "path": "/Applications/Xcode.app" },
     { "app_name": "zoom.us", "source": "Identified Developer", "bundle_id": "us.zoom.xos", "path": "/Applications/zoom.us.app" },
