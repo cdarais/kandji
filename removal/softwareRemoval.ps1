@@ -18,7 +18,7 @@ $deviceID = ((Invoke-WebRequest -Uri "$baseUrl/devices?device_name=$serial" -Hea
 $foundApps = ((Invoke-WebRequest -Uri "$baseUrl/devices/$deviceID/apps" -Headers $headers -Method Get).Content | ConvertFrom-Json -Depth 100).apps | Select-Object "app_name", "bundle_id", "source", "path", "process"
 
 $ProgressPreference = 'Continue'
-$noAppFound= $true
+$noAppFound = $true
 
 foreach ($app in $foundApps) {
 
@@ -31,23 +31,22 @@ foreach ($app in $foundApps) {
         
         Write-Host "killing proccess $($app.app_name)"
         
-        $sleepCounter = 0 
-        while ((ps -ax | grep $app.app_name) -match '[0-9]+') {
+        $sleepCounter = 0
+        while ( pgrep $app.app_name ) {
+            $pids = pgrep $app.app_name
             if ($sleepCounter -gt 10) {
-                Write-Host "failed to stop process $($app.app_name) processId $($matches[0])"
+                Write-Host "failed to stop process $($app.app_name) processId $($pids)"
                 $failedStops.Add($app.app_name)
                 break
             }  
-
-        # (ps -ax | grep $app.app_name) -match '[0-9]+'
-        sudo kill -9 $matches[0]
-        Start-Sleep -Seconds 1
-        $sleepCounter++
-
-        # if ((ps -ax | grep $app.app_name) -match '[0-9]+') {
-        #     Write-Host "failed to stop process $($app.app_name) processId $($matches[0])"
-        #     $failedStops.Add($app.app_name)
-        # }
+            
+            foreach ($p in $pids) {
+                if ( $null -eq (Get-Process | Where-Object { $_.Id -eq $p }) ) {
+                    sudo kill -9 $p
+                }
+            }
+            Start-Sleep -Seconds 1
+            $sleepCounter++
         }
         
         $sleepCounter = 0
