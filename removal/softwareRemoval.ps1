@@ -31,22 +31,24 @@ foreach ($app in $foundApps) {
         
         Write-Host "killing proccess $($app.app_name)"
         
-        # $sleepCounter = 0 
-        # while ((ps -ax | grep $app.app_name) -match '[0-9]+') {
-        #     if ($sleepCounter -gt 10) {
-                # Write-Host "failed to stop process $($app.app_name) processId $($matches[0])"
-                # $failedStops.Add($app.app_name)
-            #     break
-            # }  
-            
-        (ps -ax | grep $app.app_name) -match '[0-9]+'
+        $sleepCounter = 0 
+        while ((ps -ax | grep $app.app_name) -match '[0-9]+') {
+            if ($sleepCounter -gt 10) {
+                Write-Host "failed to stop process $($app.app_name) processId $($matches[0])"
+                $failedStops.Add($app.app_name)
+                break
+            }  
+
+        # (ps -ax | grep $app.app_name) -match '[0-9]+'
         sudo kill -9 $matches[0]
         Start-Sleep -Seconds 1
-        if ((ps -ax | grep $app.app_name) -match '[0-9]+') {
-            Write-Host "failed to stop process $($app.app_name) processId $($matches[0])"
-            $failedStops.Add($app.app_name)
-        }
+        $sleepCounter++
+
+        # if ((ps -ax | grep $app.app_name) -match '[0-9]+') {
+        #     Write-Host "failed to stop process $($app.app_name) processId $($matches[0])"
+        #     $failedStops.Add($app.app_name)
         # }
+        }
         
         $sleepCounter = 0
         while (Test-Path -Path $app.path) {
