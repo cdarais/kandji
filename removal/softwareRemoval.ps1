@@ -40,7 +40,7 @@ foreach ($app in $foundApps) {
     if ( -not ($allowedApps | Where-Object { $_.app_name -eq $app.app_name -and $_.source -eq $app.source -and $_.bundle_id -eq $app.bundle_id -and $_.path -eq $app.path }) ) {
         $noAppFound = $false
         
-        Write-Host "removing $($app.app_name)"
+        Write-Host "removing $($app.app_name) in location $($app.path)"
         
         if (pgrep $app.app_name) {
             Write-Host "killing proccess $($app.app_name)"
