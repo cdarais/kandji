@@ -5,7 +5,7 @@ function convertAppName {
 
     switch ($appName) {
         "TeamViewerHost" { 
-            Return "Teamviewer"
+            Return "TeamViewer"
         }
         Default {
             Return $appName
@@ -76,10 +76,10 @@ foreach ($app in $foundApps) {
         sudo rm -rf $app.path
 
         if (Test-Path -Path $app.path) {
-            $failures.Add("removal of $($app.app_name) with process $processName still has appPath of $($app.path)")
+            [void]$failures.Add("removal of $($app.app_name) with process $processName still has appPath of $($app.path)")
         }
         elseif (Test-Path -Path $alteredAppPath) {
-            $failures.Add("removal of $($app.app_name) with process $processName still has appPath of $alteredPath")
+            [void]$failures.Add("removal of $($app.app_name) with process $processName still has appPath of $alteredPath")
         }
         else {
             Write-Host "successfully removed: $($app.app_name)"
