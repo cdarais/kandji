@@ -54,7 +54,9 @@ foreach ($app in $foundApps) {
             # $p = $p.replace($app.app_name, (convertAppName -appName $app.app_name))
             # $p -match '[0-9]+'
             # if ($matches[0]) {
-            sudo kill -9 $p
+            if (Get-Process | Where-Object { $_.Id -eq $p }) {
+                sudo kill -9 $p
+            }
         }
             # if ( (Get-Process | Where-Object { $_.Id -eq $matches[0] }) ) {
             #     sudo kill -9 $matches[0]
