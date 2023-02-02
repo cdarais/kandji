@@ -7,6 +7,7 @@
     { "app_name": "Adobe Acrobat Reader DC", "source": "Identified Developer", "bundle_id": "com.adobe.Reader", "path": "/Applications/Adobe Acrobat Reader DC.app" },
     { "app_name": "Adobe After Effects 2023", "source": "Identified Developer", "bundle_id": "com.adobe.AfterEffects", "path": "/Applications/Adobe After Effects 2023/Adobe After Effects 2023.app" },
     { "app_name": "Adobe After Effects Render Engine 2023", "source": "Identified Developer", "bundle_id": "com.adobe.AfterEffectsRenderEngine", "path": "/Applications/Adobe After Effects 2023/Adobe After Effects Render Engine 2023.app" },
+    { "app_name": "Adobe Animate 2023", "source": "Identified Developer", "bundle_id": "com.adobe.Adobe-Animate-2023.applicatoin", "path": "/Applications/Adobe Animate 2023/Adobe Animate 2023.app" },
     { "app_name": "Adobe Illustrator", "source": "Identified Developer", "bundle_id": "com.adobe.illustrator", "path": "/Applications/Adobe Illustrator 2023/Adobe Illustrator.app" },
     { "app_name": "Adobe InDesign 2023", "source": "Identified Developer", "bundle_id": "com.adobe.InDesign", "path": "/Applications/Adobe InDesign 2023/Adobe InDesign 2023.app" },
     { "app_name": "Adobe Media Encoder 2023", "source": "Identified Developer", "bundle_id": "com.adobe.ame.application.23", "path": "/Applications/Adobe Media Encoder 2023/Adobe Media Encoder 2023.app" },
