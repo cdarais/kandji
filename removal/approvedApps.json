@@ -166,8 +166,6 @@
     { "app_name": "Sublime Text", "source": "Identified Developer", "bundle_id": "com.sublimetext.4", "path": "/Applications/Sublime Text.app" },
     { "app_name": "System Information", "source": "Apple", "bundle_id": "com.apple.SystemProfiler", "path": "/System/Applications/Utilities/System Information.app" },
     { "app_name": "System Settings", "source": "Apple", "bundle_id": "com.apple.systempreferences", "path": "/System/Applications/System Settings.app" },
-    { "app_name": "TeamViewer", "source": "Identified Developer", "bundle_id": "com.teamviewer.TeamViewer", "path": "/Applications/TeamViewer.app" },
-    { "app_name": "TeamViewerHost", "source": "Identified Developer", "bundle_id": "com.teamviewer.TeamViewerHost", "path": "/Applications/TeamViewerHost.app" },
     { "app_name": "Terminal", "source": "Apple", "bundle_id": "com.apple.Terminal", "path": "/System/Applications/Utilities/Terminal.app" },
     { "app_name": "TextEdit", "source": "Apple", "bundle_id": "com.apple.TextEdit", "path": "/System/Applications/TextEdit.app" },
     { "app_name": "Thunderbird", "source": "Identified Developer", "bundle_id": "org.mozilla.thunderbird", "path": "/Applications/Thunderbird.app" },
