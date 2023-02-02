@@ -16,17 +16,17 @@ $allowedApps = (Invoke-WebRequest -uri $approvedAppsUrl).Content | ConvertFrom-J
 $deviceID = ((Invoke-WebRequest -Uri "$baseUrl/devices?device_name=$serial" -Headers $headers -Method Get).Content | ConvertFrom-Json -Depth 100).device_id
 
 $foundApps = ((Invoke-WebRequest -Uri "$baseUrl/devices/$deviceID/apps" -Headers $headers -Method Get).Content | ConvertFrom-Json -Depth 100).apps | Select-Object "app_name", "bundle_id", "source", "path", "process"
-
 $ProgressPreference = 'Continue'
+
 $noAppFound = $true
+$failedStops = [System.Collections.ArrayList]::new() 
+$failedRemovals = [System.Collections.ArrayList]::new()
 
 foreach ($app in $foundApps) {
 
     if ( -not ($allowedApps | Where-Object { $_.app_name -eq $app.app_name -and $_.source -eq $app.source -and $_.bundle_id -eq $app.bundle_id -and $_.path -eq $app.path }) ) {
         $noAppFound = $false
-        $failedStops = [System.Collections.ArrayList]::new() 
-        $failedRemovals = [System.Collections.ArrayList]::new()
-
+        
         Write-Host "removing $($app.app_name)"
         
         if (pgrep $app.app_name) {
