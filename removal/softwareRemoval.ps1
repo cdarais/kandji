@@ -46,7 +46,7 @@ foreach ($app in $foundApps) {
         $processName = (convertAppName -appName $app.app_name)
         $alteredAppPath = $app.path.replace($app.app_name, $processName)
 
-        if (pgre$processName){
+        if (pgrep $processName){
             Write-Host "killing proccess $processName"
         }
                 
