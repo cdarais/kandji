@@ -11,6 +11,7 @@
     { "app_name": "Adobe InDesign 2023", "source": "Identified Developer", "bundle_id": "com.adobe.InDesign", "path": "/Applications/Adobe InDesign 2023/Adobe InDesign 2023.app" },
     { "app_name": "Adobe Media Encoder 2023", "source": "Identified Developer", "bundle_id": "com.adobe.ame.application.23", "path": "/Applications/Adobe Media Encoder 2023/Adobe Media Encoder 2023.app" },
     { "app_name": "Adobe Photoshop 2023", "source": "Identified Developer", "bundle_id": "com.adobe.Photoshop", "path": "/Applications/Adobe Photoshop 2023/Adobe Photoshop 2023.app" },
+    { "app_name": "Adobe Premiere Pro 2023", "source": "Identified Developer", "bundle_id": "com.adobe.PremierePro.23", "path": "/Applications/Adobe Premiere Pro 2023/Adobe Premiere Pro 2023.app" },
     { "app_name": "AirPort Utility", "source": "Apple", "bundle_id": "com.apple.airport.airportutility", "path": "/System/Applications/Utilities/AirPort Utility.app" },
     { "app_name": "Alfred 5", "source": "Identified Developer", "bundle_id": "com.runningwithcrayons.Alfred", "path": "/Applications/Alfred 5.app" },
     { "app_name": "AltTab", "source": "Identified Developer", "bundle_id": "com.lwouis.alt-tab-macos", "path": "/Applications/AltTab.app" },
