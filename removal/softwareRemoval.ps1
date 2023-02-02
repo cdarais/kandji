@@ -7,7 +7,9 @@ function convertAppName {
         "TeamViewerHost" { 
             Return "Teamviewer"
         }
-        Default {}
+        Default {
+            Return $appName
+        }
     }
 }
 
@@ -32,8 +34,7 @@ $foundApps = ((Invoke-WebRequest -Uri "$baseUrl/devices/$deviceID/apps" -Headers
 $ProgressPreference = 'Continue'
 
 $noAppFound = $true
-$failedStops = [System.Collections.ArrayList]::new() 
-$failedRemovals = [System.Collections.ArrayList]::new()
+$failures = [System.Collections.ArrayList]::new() 
 
 foreach ($app in $foundApps) {
 
@@ -42,62 +43,64 @@ foreach ($app in $foundApps) {
         
         Write-Host "removing $($app.app_name) in location $($app.path)"
         
-        if (pgrep $app.app_name) {
-            Write-Host "killing proccess $($app.app_name)"
-        }
+        $processName = (convertAppName -appName $app.app_name)
+        $alteredAppPath = $app.path.replace($app.app_name, $processName)
 
-
-        
-        $sleepCounter = 0
-        while ( pgrep $app.app_name ) {
-
-            if ($sleepCounter -gt 10) {
-                Write-Host "failed to stop process $($app.app_name) processId $($pids)"
-                [void]$failedStops.Add($app.app_name)
-                break
-            }  
-            
-            $pids = ps -ax | grep $app.path
-        
-            foreach ($p in $pids) {
-                $p -match '[0-9]+'
-                if ( (Get-Process | Where-Object { $_.Id -eq $matches[0] }) ) {
-                    sudo kill -9 $matches[0]
-                }
-            }
-            Start-Sleep -Seconds 1
-            $sleepCounter++
+        if (pgre$processName){
+            Write-Host "killing proccess $processName"
         }
-        
-        $sleepCounter = 0
-        while (Test-Path -Path $app.path) {
-            if ($sleepCounter -gt 10) {
-                Write-Host "failed to remove app path $($app.path)"
-                [void]$failedRemovals.Add($app.path)
-                break
-            }
-            sudo rm -rf $app.path
-            Start-Sleep -Seconds 1
-            $sleepCounter++
+                
+        foreach ($p in (pgrep $processName)) {
+            # $p = $p.replace($app.app_name, (convertAppName -appName $app.app_name))
+            # $p -match '[0-9]+'
+            # if ($matches[0]) {
+            sudo kill -9 $p
         }
-        if (!(Test-Path -Path $app.path)) {
+            # if ( (Get-Process | Where-Object { $_.Id -eq $matches[0] }) ) {
+            #     sudo kill -9 $matches[0]
+            # }
+        # }
+        #     Start-Sleep -Seconds 1
+        #     $sleepCounter++
+        # }
+        
+        # $sleepCounter = 0
+        # while (Test-Path -Path $app.path) {
+        #     if ($sleepCounter -gt 10) {
+        #         Write-Host "failed to remove app path $($app.path)"
+        #         [void]$failedRemovals.Add($app.path)
+        #         break
+        #     }
+        
+        sudo rm -rf $alteredAppPath
+        sudo rm -rf $app.path
+
+        if (Test-Path -Path $app.path) {
+            $failures.Add("removal of $($app.app_name) with process $processName still has appPath of $($app.path)")
+        }
+        elseif (Test-Path -Path $alteredAppPath) {
+            $failures.Add("removal of $($app.app_name) with process $processName still has appPath of $alteredPath")
+        }
+        else {
             Write-Host "successfully removed: $($app.app_name)"
         }
-    } 
+    }
 }
 
-if ($failedStops || $failedRemovals) {
-    if ($failedStops) {
-        Write-Host "failed stops $failedStops"
-    }
-
-    if ($failedRemovals) {
-        Write-Host "failed stops $failedRemovals"
-    }
-
+if ($failures) {
+    Write-Host "failed stops $failures"
     exit 1
 }
 
 if ($noAppFound) {
     Write-Host "No apps to be removed found"
 }
+
+
+# while ( pgrep $app.app_name ) {
+
+    # if ($sleepCounter -gt 10) {
+    #     Write-Host "failed to stop process $($app.app_name) processId $($pids)"
+    #     [void]$failedStops.Add($app.app_name)
+    #     break
+    # }  
