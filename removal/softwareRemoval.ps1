@@ -57,7 +57,7 @@ foreach ($app in $foundApps) {
                 break
             }  
             
-            $pids = ps -ax | grep $app.app_name
+            $pids = ps -ax | grep $app.path
         
             foreach ($p in $pids) {
                 $p -match '[0-9]+'
