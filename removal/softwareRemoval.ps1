@@ -4,7 +4,7 @@ system_profiler SPHardwareDataType | awk '/Serial/ {print $4}'
 '@
 
 $token = $args[0]
-Write-Host $token
+
 $baseUrl = "https://workboard.clients.us-1.kandji.io/api/v1"
 $approvedAppsUrl = "https://raw.githubusercontent.com/cdarais/kandji/main/removal/approvedApps.json"
 $headers = New-Object "System.Collections.Generic.Dictionary[[String],[String]]"
@@ -19,8 +19,6 @@ $foundApps = ((Invoke-WebRequest -Uri "$baseUrl/devices/$deviceID/apps" -Headers
 
 $ProgressPreference = 'Continue'
 $noAppFound = $true
-
-$foundApps.remove
 
 foreach ($app in $foundApps) {
 
@@ -72,7 +70,7 @@ foreach ($app in $foundApps) {
     } 
 }
 
-if ($failedStops || $failedRemovals) {
+if ($failedStops.length() -ne 0 || $failedRemovals.length() -ne 0) {
     exit 1
 }
 
