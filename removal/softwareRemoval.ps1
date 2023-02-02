@@ -1,3 +1,16 @@
+function convertAppName {
+    param(
+        $appName
+    )
+
+    switch ($appName) {
+        "TeamViewerHost" { 
+            Return "Teamviewer"
+        }
+        Default {}
+    }
+}
+
 
 $serial = zsh -c @'
 system_profiler SPHardwareDataType | awk '/Serial/ {print $4}'
@@ -32,6 +45,8 @@ foreach ($app in $foundApps) {
         if (pgrep $app.app_name) {
             Write-Host "killing proccess $($app.app_name)"
         }
+
+
         
         $sleepCounter = 0
         while ( pgrep $app.app_name ) {
@@ -42,11 +57,12 @@ foreach ($app in $foundApps) {
                 break
             }  
             
-            $pids = pgrep $app.app_name
+            $pids = ps -ax | grep $app.app_name
         
             foreach ($p in $pids) {
-                if ( (Get-Process | Where-Object { $_.Id -eq $p }) ) {
-                    sudo kill -9 $p
+                $p -match '[0-9]+'
+                if ( (Get-Process | Where-Object { $_.Id -eq $matches[0] }) ) {
+                    sudo kill -9 $matches[0]
                 }
             }
             Start-Sleep -Seconds 1
