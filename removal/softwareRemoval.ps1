@@ -38,7 +38,7 @@ foreach ($app in $foundApps) {
 
             if ($sleepCounter -gt 10) {
                 Write-Host "failed to stop process $($app.app_name) processId $($pids)"
-                $failedStops.Add($app.app_name)
+                [void]$failedStops.Add($app.app_name)
                 break
             }  
             
@@ -57,7 +57,7 @@ foreach ($app in $foundApps) {
         while (Test-Path -Path $app.path) {
             if ($sleepCounter -gt 10) {
                 Write-Host "failed to remove app path $($app.path)"
-                $failedRemovals.Add($app.path)
+                [void]$failedRemovals.Add($app.path)
                 break
             }
             sudo rm -rf $app.path
@@ -70,7 +70,15 @@ foreach ($app in $foundApps) {
     } 
 }
 
-if ($failedStops.length() -ne 0 || $failedRemovals.length() -ne 0) {
+if ($failedStops || $failedRemovals) {
+    if ($failedStops) {
+        Write-Host "failed stops $failedStops"
+    }
+
+    if ($failedRemovals) {
+        Write-Host "failed stops $failedRemovals"
+    }
+
     exit 1
 }
 
