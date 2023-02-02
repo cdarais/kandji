@@ -20,6 +20,8 @@ $foundApps = ((Invoke-WebRequest -Uri "$baseUrl/devices/$deviceID/apps" -Headers
 $ProgressPreference = 'Continue'
 $noAppFound = $true
 
+$foundApps.remove
+
 foreach ($app in $foundApps) {
 
     if ( -not ($allowedApps | Where-Object { $_.app_name -eq $app.app_name -and $_.source -eq $app.source -and $_.bundle_id -eq $app.bundle_id -and $_.path -eq $app.path }) ) {
@@ -29,19 +31,23 @@ foreach ($app in $foundApps) {
 
         Write-Host "removing $($app.app_name)"
         
-        Write-Host "killing proccess $($app.app_name)"
+        if (pgrep $app.app_name) {
+            Write-Host "killing proccess $($app.app_name)"
+        }
         
         $sleepCounter = 0
         while ( pgrep $app.app_name ) {
-            $pids = pgrep $app.app_name
+
             if ($sleepCounter -gt 10) {
                 Write-Host "failed to stop process $($app.app_name) processId $($pids)"
                 $failedStops.Add($app.app_name)
                 break
             }  
             
+            $pids = pgrep $app.app_name
+        
             foreach ($p in $pids) {
-                if ( $null -eq (Get-Process | Where-Object { $_.Id -eq $p }) ) {
+                if ( (Get-Process | Where-Object { $_.Id -eq $p }) ) {
                     sudo kill -9 $p
                 }
             }
@@ -60,8 +66,9 @@ foreach ($app in $foundApps) {
             Start-Sleep -Seconds 1
             $sleepCounter++
         }
-        
-        Write-Host "successfully removed: $($app.app_name)"
+        if (!(Test-Path -Path $app.path)) {
+            Write-Host "successfully removed: $($app.app_name)"
+        }
     } 
 }
 
