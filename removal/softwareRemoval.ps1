@@ -13,7 +13,6 @@ function convertAppName {
     }
 }
 
-
 $serial = zsh -c @'
 system_profiler SPHardwareDataType | awk '/Serial/ {print $4}'
 '@
@@ -41,39 +40,22 @@ foreach ($app in $foundApps) {
     if ( -not ($allowedApps | Where-Object { $_.app_name -eq $app.app_name -and $_.source -eq $app.source -and $_.bundle_id -eq $app.bundle_id -and $_.path -eq $app.path }) ) {
         $noAppFound = $false
         
-        Write-Host "removing $($app.app_name) in location $($app.path)"
+        Write-Host "attempting to remove $($app.app_name)"
         
         $processName = (convertAppName -appName $app.app_name)
         $alteredAppPath = $app.path.replace($app.app_name, $processName)
 
         if (pgrep $processName){
-            Write-Host "killing proccess $processName"
+            Write-Host "proccesses found"
         }
                 
         foreach ($p in (pgrep $processName)) {
-            # $p = $p.replace($app.app_name, (convertAppName -appName $app.app_name))
-            # $p -match '[0-9]+'
-            # if ($matches[0]) {
+            Write-Host "stopping process $processName - $p"
             if (Get-Process | Where-Object { $_.Id -eq $p }) {
                 sudo kill -9 $p
             }
         }
-            # if ( (Get-Process | Where-Object { $_.Id -eq $matches[0] }) ) {
-            #     sudo kill -9 $matches[0]
-            # }
-        # }
-        #     Start-Sleep -Seconds 1
-        #     $sleepCounter++
-        # }
-        
-        # $sleepCounter = 0
-        # while (Test-Path -Path $app.path) {
-        #     if ($sleepCounter -gt 10) {
-        #         Write-Host "failed to remove app path $($app.path)"
-        #         [void]$failedRemovals.Add($app.path)
-        #         break
-        #     }
-        
+
         sudo rm -rf $alteredAppPath
         sudo rm -rf $app.path
 
@@ -97,12 +79,3 @@ if ($failures) {
 if ($noAppFound) {
     Write-Host "No apps to be removed found"
 }
-
-
-# while ( pgrep $app.app_name ) {
-
-    # if ($sleepCounter -gt 10) {
-    #     Write-Host "failed to stop process $($app.app_name) processId $($pids)"
-    #     [void]$failedStops.Add($app.app_name)
-    #     break
-    # }  
