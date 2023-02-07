@@ -16,6 +16,7 @@
     { "app_name": "AirPort Utility", "source": "Apple", "bundle_id": "com.apple.airport.airportutility", "path": "/System/Applications/Utilities/AirPort Utility.app" },
     { "app_name": "Alfred 5", "source": "Identified Developer", "bundle_id": "com.runningwithcrayons.Alfred", "path": "/Applications/Alfred 5.app" },
     { "app_name": "AltTab", "source": "Identified Developer", "bundle_id": "com.lwouis.alt-tab-macos", "path": "/Applications/AltTab.app" },
+    { "app_name": "AnyPointStudio", "source": "Identified Developer", "bundle_id": "studio.product", "path": "/Applications/AnypointStudio.app" },
     { "app_name": "App Store", "source": "Apple", "bundle_id": "com.apple.AppStore", "path": "/System/Applications/App Store.app" },
     { "app_name": "Apple Configurator", "source": "Apple Business Manager", "bundle_id": "com.apple.configurator.ui", "path": "/Applications/Apple Configurator.app" },
     { "app_name": "Arc", "source": "Identified Developer", "bundle_id": "company.thebrowser.Browser", "path": "/Applications/Arc.app" },
