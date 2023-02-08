@@ -152,6 +152,7 @@
     { "app_name": "Slack", "source": "Apple Business Manager", "bundle_id": "com.tinyspeck.slackmacgap", "path": "/Applications/Slack.app" },
     { "app_name": "Snagit 2022", "source": "Identified Developer", "bundle_id": "com.TechSmith.Snagit2022", "path": "/Applications/Snagit 2022.app" },
     { "app_name": "SnowSQL", "source": "Identified Developer", "bundle_id": "net.snowflake.snowsql", "path": "/Applications/SnowSQL.app" },
+    { "app_name": "SoapUI-5.7.0", "source": "Unknown", "bundle_id": "com.install4j.5517-2803-0637-4585.64", "path": "/Applications/SoapUI-5.7.0.app" },
     { "app_name": "Sourcetree", "source": "Identified Developer", "bundle_id": "com.torusknot.SourceTreeNotMAS", "path": "/Applications/Sourcetree.app" },
     { "app_name": "Splashtop Business", "source": "Identified Developer", "bundle_id": "com.splashtop.stb.macosx", "path": "/Applications/Splashtop Business.app" },
     { "app_name": "Splashtop Streamer", "source": "Identified Developer", "bundle_id": "com.splashtop.Splashtop-Streamer", "path": "/Applications/Splashtop Streamer.app" },
