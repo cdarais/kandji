@@ -12,7 +12,7 @@ param (
 	)][string]$appVersion = $null,
 	[Parameter(
 		Position = 3
-	)][bool]$isSilent = $false
+	)][bool]$isSilent = 0
 )
 
 $codeList = [System.Collections.ArrayList]::new()
