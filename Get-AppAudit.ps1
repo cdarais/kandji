@@ -9,7 +9,10 @@ param (
 	)][string]$appName = $null,
 	[Parameter(
 		Position = 2
-	)][string]$appVersion = $null
+	)][string]$appVersion = $null,
+	[Parameter(
+		Position = 3
+	)][bool]$isSilent = $false
 )
 
 $codeList = [System.Collections.ArrayList]::new()
@@ -19,7 +22,21 @@ $appPaths = @(
 	"/System/Applications"
 	"/Applications"
 )
+function writeOut {
+	param (
+		[Parameter(
+			ValueFromPipeline = $true
+		)]
+		[string]$outString
+	)
 
+	if ($isSilent) {
+		return
+	}
+
+	Write-Output $outString
+
+}
 function checkProfile {
 	param(
 	)
@@ -27,10 +44,13 @@ function checkProfile {
 	$profileNames = sudo profiles show | grep $profileName
 
 	if ($null -eq $profileNames -or ($profileNames | ForEach-Object { $_ -like "*$profileName*" }) -contains $false) {
-		Write-Host "$profileName not installed"
+		"$profileName not installed" | writeOut
 		return $false
 	}
-	Write-Host "$profileName installed"
+	if (!$isSilent) {
+
+	}
+	"$profileName installed" | writeOut
 	return $true
 
 }
@@ -40,12 +60,12 @@ function checkApp {
 	
 	foreach ($a in $appPaths) {
 		if (Test-Path -Path "$a/$appName") {
-			Write-Host "install location $a/$appName"
+			"install location $a/$appName" | writeOut
 			return $true
 		}
 	}
 
-	Write-Host "$appName install not found"
+	"$appName install not found" | writeOut
 	return $false
 
 }
@@ -63,16 +83,16 @@ function checkVersion {
 	}
 
 	if ($null -eq $versionString) {
-		Write-Host "$appName version not found"
+		"$appName version not found" | writeOut
 		return $false
 	}
 
 	if ($versionString -ne $appVersion) {
-		Write-Host "expected to find ""$appversion"" and found ""$versionString"""
+		"expected to find ""$appversion"" and found ""$versionString""" | writeOut
 		return $false
 	}
 
-	Write-Host "$versionString"
+	"$versionString" | writeOut
 	return $true
 }
 
@@ -89,7 +109,7 @@ if ($appVersion) {
 }
 
 if ($codeList -contains $false) {
-	Write-Host "Error"
+	"Error" | writeOut
 	return $false
 }
 
