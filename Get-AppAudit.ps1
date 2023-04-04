@@ -90,7 +90,7 @@ if ($appVersion) {
 
 if ($codeList -contains $false) {
 	Write-Host "Error"
-	exit $false
+	return $false
 }
 
-exit $true
+return $true
