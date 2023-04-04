@@ -12,7 +12,7 @@ param (
 	)][string]$appVersion = $null,
 	[Parameter(
 		Position = 3
-	)][bool]$isSilent = 0
+	)][int]$isSilent = 0
 )
 
 $codeList = [System.Collections.ArrayList]::new()
@@ -25,16 +25,17 @@ $appPaths = @(
 function writeOut {
 	param (
 		[Parameter(
+			Position = 0,
 			ValueFromPipeline = $true
 		)]
 		[string]$outString
 	)
 
-	if ($isSilent) {
+	if ($isSilent -ne 0) {
 		return
 	}
 
-	Write-Output $outString
+	Write-Host $outString
 
 }
 function checkProfile {
