@@ -21,8 +21,8 @@ function checkForFonts {
 
 if (checkForFonts) {
 	Write-Host "missing font count: $($missingFonts.count)"
-	exit 1
+	return 1
 }
 
 Write-Host "no missing fonts detected"
-exit 0
+return 0
