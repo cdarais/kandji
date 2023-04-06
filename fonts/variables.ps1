@@ -1,5 +1,3 @@
-$uri = "https://raw.githubusercontent.com/cdarais/kandji/main/fonts"
-
 $fonts = @(
 	"Inter-Black.otf",
 	"Inter-Black.ttf",
@@ -61,50 +59,9 @@ $fonts = @(
 	"PlayfairDisplay-SemiBoldItalic.tff"
 )
 
-
 $libraries = @(
 	"/Library/Fonts",
 	"~/Library/Fonts",
 	"/System/Library/Fonts",
 	"/System/Library/Font/Supplemental"
 )
-
-$missingFonts = [System.Collections.ArrayList]::new()
-
-function checkForFonts {
-	param()
-	foreach ($font in $fonts) {
-		$fontNotFound = $true
-		foreach ($library in $libraries) {
-			if (Test-Path -Path "$library/$font" -PathType Leaf) {
-				$fontNotFound = $false
-				break
-			}
-		}
-		if ($fontNotFound) {
-			$missingFonts.Add($font)
-		}
-	}
-	return $fontNotFound
-}
-
-if (checkForFonts) {
-	Write-Host "missing font count: $($missingFonts.count)"
-	Write-Host "installing"
-	foreach ($missingFont in $missingFonts) {
-		Write-Host "$missingFont"
-		Invoke-WebRequest -Uri "$uri/data/$missingFont" -OutFile "$($libraries[0])/$missingFont"
-	}
-} else {
-	Write-Host "no missing fonts detected"
-	exit 0
-}
-
-$missingFonts = [System.Collections.ArrayList]::new()
-
-if (checkForFonts) {
-	Write-Host "missing fonts $missingFonts"
-	exit 1
-}
-
-exit 0
