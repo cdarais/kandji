@@ -14,8 +14,7 @@ function addAppItem {
 	$item.Add($itemName)
 	$item.Add("</string><key>_CFURLStringType</key><integer>0</integer></dict></dict></dict>")
 
-	defaults write com.apple.dock persistent-apps -array-add $item
-	$item.gettype()
+	defaults write $dock persistent-apps -array-add $item
 }
 function addOtherItem {
 	[CmdletBinding()]
@@ -35,8 +34,7 @@ function addOtherItem {
 	$item.Add("<key>file-label</key><string>Downloads</string><key>file-type</key><string>2</string></dict>")
 	$item.Add("<key>tile-type</key><string>directory-tile</string></dict>")
 
-	defaults write com.apple.dock persistent-others -array-add $item
-	$item.gettype()
+	defaults write $dock persistent-others -array-add $item
 
 }
 
