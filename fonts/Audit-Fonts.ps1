@@ -1,4 +1,4 @@
-. ./variables.ps1
+. "$($args[0])/variables.ps1"
 
 $missingFonts = [System.Collections.ArrayList]::new()
 
