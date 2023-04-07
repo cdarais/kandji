@@ -31,6 +31,6 @@ then
 	exit 1
 fi
 
-/usr/local/bin/kandji display-alert --title "Success" --message "Reset network"
+/usr/local/bin/kandji display-alert --title "Success" --message "Successfully reset network. A reboot is required within 30 minutes"
 
 exit 0
