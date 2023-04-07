@@ -8,5 +8,3 @@ Write-Host "installing"
 foreach ($missingFont in checkForFonts) {
 	Invoke-WebRequest -Uri "$uri/$missingFont" -OutFile "$($libraries[0])/$missingFont"
 }
-
-exit 0
