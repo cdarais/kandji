@@ -7,12 +7,10 @@ function addAppItem {
 		)][string]$itemName
 	)
 
-	$item = ""
-
-	$item.Add("<dict><key>tile-data</key><dict><key>file-data</key><dict>")
-	$item.Add("<key>_CFURLString</key><string>")
-	$item.Add("$itemName")
-	$item.Add("</string><key>_CFURLStringType</key><integer>0</integer></dict></dict></dict>")
+	$item = + "<dict><key>tile-data</key><dict><key>file-data</key><dict>"
+	$item = $item + "<key>_CFURLString</key><string>"
+	$item = $item + "$itemName"
+	$item = $item + "</string><key>_CFURLStringType</key><integer>0</integer></dict></dict></dict>"
 
 	defaults write $dock persistent-apps -array-add $item
 }
@@ -25,14 +23,12 @@ function addOtherItem {
 		)][string]$itemName
 	)
 
-	$item = ""
-
-	$item.Add("<dict><key>tile-data</key><dict><key>file-data</key><dict>")
-	$item.Add("<key>_CFURLString</key><string>")
-	$item.Add("$itemName")
-	$item.Add("</string><key>_CFURLStringType</key><integer>0</integer></dict>")
-	$item.Add("<key>file-label</key><string>Downloads</string><key>file-type</key><string>2</string></dict>")
-	$item.Add("<key>tile-type</key><string>directory-tile</string></dict>")
+	$item = "<dict><key>tile-data</key><dict><key>file-data</key><dict>"
+	$item = $item + "<key>_CFURLString</key><string>"
+	$item = $item + "$itemName"
+	$item = $item + "</string><key>_CFURLStringType</key><integer>0</integer></dict>"
+	$item = $item + "<key>file-label</key><string>Downloads</string><key>file-type</key><string>2</string></dict>"
+	$item = $item + "<key>tile-type</key><string>directory-tile</string></dict>"
 
 	defaults write $dock persistent-others -array-add $item
 
