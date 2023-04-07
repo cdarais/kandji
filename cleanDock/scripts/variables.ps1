@@ -16,8 +16,8 @@ $dockOthers = @(
 	"$HOME/Downloads"
 )
 
-$userHome = (zsh -c "dscl . list /Users | grep -v '_'") | Where-Object { $_ -notlike "*admin" -and $_ -ne "daemon" -and $_ -ne "root" -and $_ -ne "nobody"}
+$userName = (zsh -c "dscl . list /Users | grep -v '_'") | Where-Object { $_ -notlike "*admin" -and $_ -ne "daemon" -and $_ -ne "root" -and $_ -ne "nobody"}
 
 Write-Output $dockApps | Out-Null
 Write-Output $dockOthers | Out-Null
-Write-Output $userHome | Out-Null
+Write-Output $userName | Out-Null
