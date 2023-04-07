@@ -9,8 +9,7 @@ if (Test-Path -Path $dockerApp) {
 	$defaultHostsData = $dockerHostsFile
 }
 
-
 Out-File -FilePath $hostsFile
 $defaultHostsData | Out-File -FilePath $hostsFile -Append
 
-/usr/local/bin/pwsh "$($args[0])/Audit-HostsFile.ps1" $args[0]
+Invoke-Expression "$($args[0])/Audit-HostsFile.ps1 $($args[0])"
