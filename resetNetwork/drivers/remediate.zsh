@@ -3,7 +3,7 @@
 declare -a files
 
 baseDirectory="/var/tmp"
-baseUri="https://raw.githubusercontent.com/cdarais/kandji/main/hostsFile"
+baseUri="https://raw.githubusercontent.com/cdarais/kandji/main/resetNetwork"
 
 files=(
 	"Reset-Network.ps1"
