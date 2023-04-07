@@ -12,3 +12,6 @@ $files = @(
 )
 
 $baseFilePath = "/Library/Preferences/SystemConfiguration"
+
+Write-Output $files | Out-Null
+Write-Output $baseFilePath | Out-Null
