@@ -9,6 +9,8 @@ if (Test-Path -Path $dockerApp) {
 	$defaultHostsData = $dockerHostsFile
 }
 
+Write-Host "attempting to resolve discrepencies"
+
 Out-File -FilePath $hostsFile
 $defaultHostsData | Out-File -FilePath $hostsFile -Append
 
