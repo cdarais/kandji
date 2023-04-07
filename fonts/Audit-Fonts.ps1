@@ -20,9 +20,8 @@ function checkForFonts {
 }
 
 if (checkForFonts) {
-	Write-Host "missing font count: $($missingFonts.count)"
-	return 1
+	Write-Host "missing font count: $($missingFonts.Count)"
+	New-Item -Path "$($args[0])/1" -ItemType File | Out-Null
+} else {
+	Write-Host "no missing fonts detected"
 }
-
-Write-Host "no missing fonts detected"
-return 0
