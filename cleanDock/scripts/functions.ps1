@@ -11,7 +11,7 @@ function addAppItem {
 	$item += "<key>_CFURLString</key><string>"
 	$item += "$itemName"
 	$item += "</string><key>_CFURLStringType</key><integer>0</integer></dict></dict></dict>"
-
+	Write-Host $item
 	defaults write $dock persistent-apps -array-add $item
 }
 function addOtherItem {

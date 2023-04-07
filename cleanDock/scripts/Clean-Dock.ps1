@@ -4,7 +4,7 @@
 waitForDock
 
 Write-Host "cleaning dock"
-
+Write-Host $dock
 defaults delete $dock persistent-apps
 defaults delete $dock persistent-others
 
