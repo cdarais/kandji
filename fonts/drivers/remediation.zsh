@@ -25,3 +25,11 @@ then
 		rm -rf "${baseDirectory}/${files[$i]}"
 	done
 fi
+
+if [[ -e "$baseDirectory/1" ]]
+then
+	rm -rf "$baseDirectory/1"
+	exit 1
+fi
+
+exit 0
