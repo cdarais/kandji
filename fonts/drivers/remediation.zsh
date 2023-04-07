@@ -6,7 +6,7 @@ baseDirectory="/var/tmp"
 baseUri="https://raw.githubusercontent.com/cdarais/kandji/main/fonts"
 
 files=(
-	"Audit-Fonts.ps1"
+	"Remediate-Fonts.ps1"
 	"functions.ps1"
 	"variables.ps1"
 )
