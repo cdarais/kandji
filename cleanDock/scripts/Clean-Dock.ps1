@@ -5,8 +5,8 @@ waitForDock
 
 Write-Host "cleaning dock"
 
-defaults delete $HOME/Library/Preferences/com.apple.dock persistent-apps
-defaults delete $HOME/Library/Preferences/com.apple.dock persistent-others
+defaults delete $userHome/Library/Preferences/com.apple.dock persistent-apps
+defaults delete $userHome/Library/Preferences/com.apple.dock persistent-others
 
 Write-Host "adding apps"
 
