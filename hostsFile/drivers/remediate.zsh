@@ -7,6 +7,7 @@ baseUri="https://raw.githubusercontent.com/cdarais/kandji/main/hostsFile"
 
 files=(
 	"Reset-HostsFile.ps1"
+	"Audit-HostsFile.ps1"
 	"functions.ps1"
 	"variables.ps1"
 )
@@ -32,5 +33,7 @@ then
 	echo "failure to revert to default"
 	exit 1
 fi
+
+/usr/local/bin/kandji display-alert --title "Success" --message "Reset hosts file back to default"
 
 exit 0

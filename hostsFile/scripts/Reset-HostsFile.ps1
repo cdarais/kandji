@@ -13,8 +13,4 @@ if (Test-Path -Path $dockerApp) {
 Out-File -FilePath $hostsFile
 $defaultHostsData | Out-File -FilePath $hostsFile -Append
 
-
-/usr/local/bin/kandji display-alert --title "Success" --message "Reset hosts file back to default"
-
-
 /usr/local/bin/pwsh "$($args[0])/Audit-HostsFile.ps1" $args[0]
