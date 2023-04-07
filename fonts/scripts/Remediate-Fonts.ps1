@@ -2,11 +2,14 @@
 . "$($args[0])/variables.ps1"
 
 $uri = "$($args[1])/data"
-$webDownloader = New-Object net.webclient
+
+$prevProgressPreference = $global:ProgressPreference
+$global:ProgressPreference = 'SilentlyContinue'
 
 Write-Host "installing missing fonts"
-
 foreach ($missingFont in checkForFonts) {
 	Write-Host "installing $missingFont"
-	$webDownloader.DownloadFile("$uri/$missingFont", "$($libraries[0])/$missingFont")
+	Invoke-WebRequest -Uri "$uri/$missingFont" -OutFile "$($libraries[0])/$missingFont"
 }
+
+$global:ProgressPreference = $prevProgressPreference
