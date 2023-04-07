@@ -7,6 +7,7 @@ baseUri="https://raw.githubusercontent.com/cdarais/kandji/main/fonts"
 
 files=(
 	"Remediate-Fonts.ps1"
+	"Audit-Fonts.ps1"
 	"functions.ps1"
 	"variables.ps1"
 )
