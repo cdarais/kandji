@@ -3,8 +3,10 @@
 
 $uri = "$($args[1])/data"
 
-Write-Host "missing font count: $($missingFonts.count)"
-Write-Host "installing"
+Write-Host "installing missing fonts"
+$ProgressPreference = 'SilentlyContinue' 
 foreach ($missingFont in checkForFonts) {
+	Write-Host "installing $missingFont"
 	Invoke-WebRequest -Uri "$uri/$missingFont" -OutFile "$($libraries[0])/$missingFont"
 }
+$ProgressPreference = 'Continue' 
