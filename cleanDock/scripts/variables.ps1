@@ -17,7 +17,7 @@ $dockOthers = @(
 )
 
 $userName = (zsh -c "dscl . list /Users | grep -v '_'") | Where-Object { $_ -notlike "*admin" -and $_ -ne "daemon" -and $_ -ne "root" -and $_ -ne "nobody"}
-$dock = "/Users/$userName/Library/Preferences/com.apple.dock"
+$dock = "/Users/$userName/Library/Preferences/com.apple.dock.plist"
 
 
 Write-Output $dockApps | Out-Null
