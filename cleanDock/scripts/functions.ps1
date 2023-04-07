@@ -7,7 +7,7 @@ function addAppItem {
 		)][string]$itemName
 	)
 
-	$item = $null
+	$item = ""
 
 	$item.Add("<dict><key>tile-data</key><dict><key>file-data</key><dict>")
 	$item.Add("<key>_CFURLString</key><string>")
@@ -25,7 +25,7 @@ function addOtherItem {
 		)][string]$itemName
 	)
 
-	$item = $null
+	$item = ""
 
 	$item.Add("<dict><key>tile-data</key><dict><key>file-data</key><dict>")
 	$item.Add("<key>_CFURLString</key><string>")
