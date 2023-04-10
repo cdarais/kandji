@@ -8,9 +8,9 @@ $dockApps = @(
 	"/System/Applications/Messages.app",
 	"/System/Applications/Mail.app",
 	"/System/Applications/Calendar.app",
-	"/Applciations/Microsoft Teams.app",
+	"/Applications/Microsoft Teams.app",
 	"/Applications/Slack.app",
-	"/Applciations/zoom.us.app",
+	"/Applications/zoom.us.app",
 	"/System/Applications/TV.app",
 	"/System/Applications/Music.app",
 	"/Applications/Visual Studio Code.app"
