@@ -1,4 +1,5 @@
-$userName = (zsh -c "dscl . list /Users | grep -v '_'") | Where-Object { $_ -notlike "*admin" -and $_ -ne "daemon" -and $_ -ne "root" -and $_ -ne "nobody"}
+$userName = (echo 'show State:/Users/ConsoleUser' | scutil | awk '/Name :/ { print $3 }')
+$userId = (id -u $userName)
 # $dock = "/Users/$userName/Library/Preferences/com.apple.dock.plist"
 $dock = "com.apple.dock"
 
