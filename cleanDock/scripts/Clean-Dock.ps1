@@ -5,26 +5,26 @@
 
 Write-Host "cleaning dock"
 Write-Host $dock
-defaults delete $dock persistent-apps
-defaults delete $dock persistent-others
+launchctl asuser $userId sudo -u $userName defaults delete com.apple.dock persistent-apps
+launchctl asuser $userId sudo -u $userName defaults delete com.apple.dock persistent-other
 
 Write-Host "adding apps"
 
 foreach ($app in $dockApps) {
 	Write-Host $app
-	$app | addAppItem
+	addAppItem -itemName $app -userName $userName -userId $userId
 }
 
 foreach ($app in $dockOthers) {
 	Write-Host $app
-	$app | addOtherItem
+	addOtherItem -itemName $app -userName $userName -userId $userId
 }
 
 Write-Host "disabling recent items"
-defaults write $dock show-recents -bool $false
+launchctl asuser $userId sudo -u $userName defaults write $dock show-recents -bool $false
 
 Write-Host "enabling minimize into dock"
-defaults write $dock minimize-to-application -bool $true
+launchctl asuser $userId sudo -u $userName defaults write $dock minimize-to-application -bool $true
 
 Write-Host "restarting dock"
 killall Dock
