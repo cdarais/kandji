@@ -57,7 +57,6 @@ $defaultSudoersData = @(
 	"# root and users in group wheel can run anything on any machine as any user",
 	"root            ALL = (ALL) NOPASSWD: ALL",
 	"%admin          ALL = (ALL) ALL",
-	"chris.darais    ALL = (ALL) ALL",
 	"## Read drop-in files from /private/etc/sudoers.d",
 	"## (the '#' here does not indicate a comment)",
 	"#includedir /private/etc/sudoers.d"
