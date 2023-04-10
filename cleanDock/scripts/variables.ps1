@@ -1,5 +1,5 @@
 $userName = (zsh -c "dscl . list /Users | grep -v '_'") | Where-Object { $_ -notlike "*admin" -and $_ -ne "daemon" -and $_ -ne "root" -and $_ -ne "nobody"}
-$dock = "/Users/$userName/Library/Preferences/com.apple.dock.plist"
+# $dock = "/Users/$userName/Library/Preferences/com.apple.dock.plist"
 
 $dockApps = @(
 	"/System/Applications/Launchpad.app",
@@ -12,7 +12,7 @@ $dockApps = @(
 	"/Applciations/zoom.us.app",
 	"/System/Applications/TV.app",
 	"/System/Applications/Music.app",
-    "/Applications/Visual Studio Code.app"
+	"/Applications/Visual Studio Code.app"
 )
 
 $dockOthers = @(
@@ -20,6 +20,6 @@ $dockOthers = @(
 )
 
 
-Write-Output $dock | Out-Null
+# Write-Output $dock | Out-Null
 Write-Output $dockApps | Out-Null
 Write-Output $dockOthers | Out-Null

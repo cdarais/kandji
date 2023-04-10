@@ -1,7 +1,7 @@
 . "$($args[0])/functions.ps1"
 . "$($args[0])/variables.ps1"
 
-waitForDock
+# waitForDock
 
 Write-Host "cleaning dock"
 Write-Host $dock
@@ -21,10 +21,10 @@ foreach ($app in $dockOthers) {
 }
 
 Write-Host "disabling recent items"
-defaults write $dock show-recents -bool FALSE
+defaults write $dock show-recents -bool $false
 
 Write-Host "enabling minimize into dock"
-defaults write $dock minimize-to-application -bool yes
+defaults write $dock minimize-to-application -bool $true
 
 Write-Host "restarting dock"
 killall Dock
