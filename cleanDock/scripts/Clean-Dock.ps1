@@ -4,6 +4,9 @@
 waitForDock
 
 Write-Host "cleaning dock"
+Write-Host $dock
+runAsUser -userId $userId -userName $userName -ctlCommand "defaults delete"
+write-host "did it display help?"
 
 runAsUser -userId $userId -userName $userName -ctlCommand "defaults delete $dock persistent-apps"
 runAsUser -userId $userId -userName $userName -ctlCommand "defaults delete $dock persistent-other"
