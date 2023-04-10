@@ -15,7 +15,7 @@ function runAsUser {
 
 	if ($userName -ne "loginwindow") {
 		# launchctl asuser "$userId" sudo -u "$userName" "/usr/bin/$ctlCommand"
-		launchctl asuser "$userId" "/usr/bin/$ctlCommand"
+		launchctl asuser "$userId" """/usr/bin/$ctlCommand"""
 	}
 }
 
