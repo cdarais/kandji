@@ -1,6 +1,6 @@
 $userName = (echo 'show State:/Users/ConsoleUser' | scutil | awk '/Name :/ { print $3 }')
 $userId = (id -u $userName)
-$userPath = "/Users/$userName/"
+$userPath = "/Users/$userName"
 $dock = "$userPath/Library/Preferences/com.apple.dock"
 
 $dockApps = @(
