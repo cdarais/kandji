@@ -1,5 +1,7 @@
 #!/bin/zsh
 
+echo whomai
+
 declare -a files
 
 baseDirectory="/var/tmp"
