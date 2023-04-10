@@ -1,7 +1,7 @@
 . "$($args[0])/functions.ps1"
 . "$($args[0])/variables.ps1"
 
-# waitForDock
+waitForDock
 
 Write-Host "cleaning dock"
 Write-Host $dock
