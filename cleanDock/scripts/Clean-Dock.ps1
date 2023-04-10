@@ -21,10 +21,10 @@ foreach ($app in $dockOthers) {
 }
 
 Write-Host "disabling recent items"
-runAsUser -userId $userId -userName $userName -ctlCommand "defaults write $dock show-recents -bool $false"
+runAsUser -userId $userId -userName $userName -ctlCommand "defaults write com.apple.com show-recents -bool $false"
 
 Write-Host "enabling minimize into dock"
-runAsUser -userId $userId -userName $userName -ctlCommand "defaults write $dock minimize-to-application -bool $true"
+runAsUser -userId $userId -userName $userName -ctlCommand "defaults write com.apple.com minimize-to-application -bool $true"
 
 Write-Host "restarting dock"
 killall Dock

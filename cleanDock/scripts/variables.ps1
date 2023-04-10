@@ -1,6 +1,5 @@
 $userName = (echo 'show State:/Users/ConsoleUser' | scutil | awk '/Name :/ { print $3 }')
 $userId = (id -u $userName)
-# $dock = "/Users/$userName/Library/Preferences/com.apple.dock.plist"
 $dock = "com.apple.dock"
 
 $dockApps = @(
@@ -21,7 +20,7 @@ $dockOthers = @(
 	"/Users/$userName/Downloads"
 )
 
-
+Write-Output $userId | Out-Null
 Write-Output $dock | Out-Null
 Write-Output $dockApps | Out-Null
 Write-Output $dockOthers | Out-Null

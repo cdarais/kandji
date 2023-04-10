@@ -37,7 +37,7 @@ function addAppItem {
 	$item += $itemName
 	$item += "</string><key>_CFURLStringType</key><integer>0</integer></dict></dict></dict>"
 
-	runAsUser -userId $userId -userName $userName -ctlCommand "defaults write com.apple.dock persistent-apps -array-add $item"
+	runAsUser -userId $userId -userName $userName -ctlCommand "defaults write com.apple.dock persistent-apps -array-add ""$item"""
 }
 function addOtherItem {
 	[CmdletBinding()]
@@ -55,7 +55,7 @@ function addOtherItem {
 	$item += "<key>file-label</key><string>Downloads</string><key>file-type</key><string>2</string></dict>"
 	$item += "<key>tile-type</key><string>directory-tile</string></dict>"
 
-	runAsUser -userId $userId -userName $userName -ctlCommand "defaults write com.apple.dock persistent-others -array-add $item"
+	runAsUser -userId $userId -userName $userName -ctlCommand "defaults write com.apple.dock persistent-others -array-add ""$item"""
 
 }
 
