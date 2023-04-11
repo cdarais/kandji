@@ -1,6 +1,6 @@
 #!/bin/zsh
 
-currentUser=$( echo "show State:/Users/ConsoleUser" | scutil | awk '/Name :/ { print $3 }' )
+currentUser=$(echo "show State:/Users/ConsoleUser" | scutil | awk '/Name :/ { print $3 }')
 uid=$(id -u "$currentUser")
 downloadFolder=/Users/$currentUser/Downloads
 
