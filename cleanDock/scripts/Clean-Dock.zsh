@@ -28,8 +28,8 @@ then
 	do
 		if [[ -e $i ]]
 		then
-			echo "Adding $i to Dock"
-			runAsUser /usr/local/bin/dockutil --add $i --no-restart
+			# runAsUser /usr/local/bin/dockutil --add $i --no-restart --allhomes
+			runAsUser /usr/bin/deafults write com.apple.dock persistent-apps -array-add $persistentApp
 		fi
 	done
 
