@@ -18,7 +18,7 @@ then
 		curl -s "${baseUri}/scripts/${files[$i]}" -o "${baseDirectory}/${files[$i]}"
 	done
 
-	/bin/zsh "${baseDirectory}/${files[1]} -b ${baseDirectory}"
+	/bin/zsh ${baseDirectory}/${files[1]} -b ${baseDirectory}
 
 	for i in {1..${#files[@]}}
 	do
