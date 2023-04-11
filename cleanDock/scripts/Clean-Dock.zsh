@@ -1,6 +1,7 @@
 #!/bin/zsh
 
 echo "base $1"
+echo "base $2"
 
 source $base/variables.zsh
 source $base/functions.zsh
@@ -27,8 +28,8 @@ source $base/functions.zsh
 	# 	fi
 	# done
 
-# 	# echo "$(date) | Adding Downloads Stack"
-# 	# runAsUser /usr/local/bin/kandji dock --add $otherAppDownloadFolder
+	# echo "$(date) | Adding Downloads Stack"
+	# runAsUser /usr/local/bin/kandji dock --add $otherAppDownloadFolder
 
 # 	echo "Disable show recent items"
 # 	runAsUser defaults write com.apple.dock show-recents -bool FALSE
@@ -36,10 +37,10 @@ source $base/functions.zsh
 # 	echo "Enable Minimize Icons into Dock Icons"
 # 	runAsUser defaults write com.apple.dock minimize-to-application -bool TRUE
 	
-# 	# echo "$(date) | Adding Downloads Stack"
+# echo "$(date) | Adding Downloads Stack"
 # 	echo "$(date) | Restarting Dock"
-# 	# echo $otherAppDownloadFolder
-# 	# sudo /usr/local/bin/kandji dock $otherAppDownloadFolder --all
+	# echo $otherAppDownloadFolder
+	# sudo /usr/local/bin/kandji dock $otherAppDownloadFolder --all
 	killall Dock
 
 # 	echo "$(date) | Adding file path to Finder"
