@@ -1,7 +1,16 @@
 #!/bin/zsh
 
-echo "base $1"
-echo "base $2"
+while [[ "$#" -gt 0 ]]
+do case $1 in
+	-b|--base) base="$2"
+	shift;;
+	*) echo "Unknown parameter passed: $1"
+	exit 1;;
+esac
+	shift
+done
+
+echo $base
 
 source $base/variables.zsh
 source $base/functions.zsh
