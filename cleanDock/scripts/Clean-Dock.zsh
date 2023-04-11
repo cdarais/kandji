@@ -8,11 +8,14 @@ then
 	installLatestDockUtil
 	waitForDesktop
 
-	echo "Adding file path to Finder"
-	runAsUser /usr/bin/defaults write com.apple.dock ResetLaunchPad -bool FALSE
+	echo "Adding filepath to finder"
+	runAsUser /usr/bin/defaults write com.apple.finder ShowPathbar -bool TRUE
 
 	echo "Setting up auto delete for trash"
 	runAsUser /usr/bin/defaults write com.apple.finder "FXRemoveOldTrashItem" -bool TRUE
+
+	echo "Setting Launchpad to default"
+	runAsUser /usr/bin/defaults write com.apple.dock ResetLaunchPad -bool FALSE
 
 	echo "Disable show recent items"
 	runAsUser /usr/bin/defaults write com.apple.dock show-recents -bool FALSE
