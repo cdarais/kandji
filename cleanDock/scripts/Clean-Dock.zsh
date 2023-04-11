@@ -1,7 +1,5 @@
 #!/bin/zsh
 
-echo $1/variables.zsh
-echo $1/functions.zsh
 source $1/variables.zsh
 source $1/functions.zsh
 
