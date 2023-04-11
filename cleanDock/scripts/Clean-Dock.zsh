@@ -9,19 +9,19 @@ then
 	waitForDesktop
 
 	echo "Adding filepath to finder"
-	runAsUser /usr/bin/defaults write com.apple.finder ShowPathbar -bool TRUE
+	runAsUser /usr/bin/defaults write com.apple.finder ShowPathbar -bool "true"
 
 	echo "Setting up auto delete for trash"
-	runAsUser /usr/bin/defaults write com.apple.finder "FXRemoveOldTrashItem" -bool TRUE
+	runAsUser /usr/bin/defaults write com.apple.finder "FXRemoveOldTrashItem" -bool "true"
 
 	echo "Setting Launchpad to default"
-	runAsUser /usr/bin/defaults write com.apple.dock ResetLaunchPad -bool FALSE
+	runAsUser /usr/bin/defaults write com.apple.dock ResetLaunchPad -bool "false"
 
 	echo "Disable show recent items"
-	runAsUser /usr/bin/defaults write com.apple.dock show-recents -bool FALSE
+	runAsUser /usr/bin/defaults write com.apple.dock show-recents -bool "false"
 
 	echo "Enable Minimize Icons into Dock Icons"
-	runAsUser /usr/bin/defaults write com.apple.dock minimize-to-application -bool TRUE
+	runAsUser /usr/bin/defaults write com.apple.dock minimize-to-application -bool "true"
 
 	echo "Removing Dock Persistent Apps"
 	runAsUser /usr/local/bin/dockutil --remove all --no-restart --allhomes
