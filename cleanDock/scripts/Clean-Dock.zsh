@@ -29,7 +29,7 @@ then
 		if [[ -e $i ]]
 		then
 			# runAsUser /usr/local/bin/dockutil --add $i --no-restart --allhomes
-			runAsUser /usr/bin/deafults write com.apple.dock persistent-apps -array-add $persistentApp
+			runAsUser /usr/bin/defaults write com.apple.dock persistent-apps -array-add $persistentApp
 		fi
 	done
 
