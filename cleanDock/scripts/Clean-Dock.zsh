@@ -9,16 +9,16 @@ then
 	waitForDesktop
 
 	echo "Adding file path to Finder"
-	runAsUser defaults write com.apple.dock ResetLaunchPad -bool FALSE
+	runAsUser /usr/bin/defaults write com.apple.dock ResetLaunchPad -bool FALSE
 
 	echo "Setting up auto delete for trash"
-	runAsUser defaults write com.apple.finder "FXRemoveOldTrashItem" -bool TRUE
+	runAsUser /usr/bin/defaults write com.apple.finder "FXRemoveOldTrashItem" -bool TRUE
 
 	echo "Disable show recent items"
-	runAsUser defaults write com.apple.dock show-recents -bool FALSE
+	runAsUser /usr/bin/defaults write com.apple.dock show-recents -bool FALSE
 
 	echo "Enable Minimize Icons into Dock Icons"
-	runAsUser defaults write com.apple.dock minimize-to-application -bool TRUE
+	runAsUser /usr/bin/defaults write com.apple.dock minimize-to-application -bool TRUE
 
 	echo "Removing Dock Persistent Apps"
 	runAsUser /usr/local/bin/dockutil --remove all --no-restart
@@ -37,8 +37,8 @@ then
 	runAsUser /usr/local/bin/dockutil --add '~/Downloads' --view auto --display stack --allhomes --no-restart
 	
 	echo "Restarting Dock"
-	killall Dock
+	/usr/bin/killall Dock
 
 	echo "Restarting Finder"
-	killall Finder
+	/usr/bin/killall Finder
 fi
