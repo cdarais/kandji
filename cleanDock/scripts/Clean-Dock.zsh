@@ -1,17 +1,7 @@
 #!/bin/zsh
 
-while [[ "$#" -gt 0 ]]
-do case $1 in
-	-b|--base) base="/var/tmp"
-	shift;;
-	*) echo "Unknown parameter passed: $1"
-	exit 1;;
-esac
-	shift
-done
-
-source $base/variables.zsh
-source $base/functions.zsh
+source /var/tmp/variables.zsh
+source /var/tmp/functions.zsh
 
 if [[ -e /usr/local/bin/pwsh ]]
 then
