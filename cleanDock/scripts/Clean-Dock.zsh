@@ -1,5 +1,8 @@
 #!/bin/zsh
 base=$1
+
+echo $base
+
 source $base/variables.zsh
 source $base/functions.zsh
 
@@ -8,22 +11,22 @@ source $base/functions.zsh
 	installLatestDockUtil
 	waitForDesktop
 	echo "Removing Dock Persistent Apps"
-	runAsUser defaults delete com.apple.dock persistent-apps
-	runAsUser defaults delete com.apple.dock persistent-others
+	runAsUser defaults delete /Users/$currentUser/Library/Preferences/com.apple.dock persistent-apps
+	# runAsUser defaults delete /Users/$currentUser/Library/Preferences/com.apple.dock persistent-others
 
-	echo "$(date) | Adding file path to Finder"
-	runAsUser defaults write com.apple.dock ResetLaunchPad -bool TRUE
+	# echo "$(date) | Adding file path to Finder"
+	# runAsUser defaults write com.apple.dock ResetLaunchPad -bool TRUE
 
-	echo "Adding Apps to Dock"
-	for i in "${dockApps[@]}"
-	do
-		if [[ -e $i ]]
-		then
-			echo "Adding $i to Dock"
-			# runAsUser defaults write com.apple.dock persistent-apps -array-add $persistentApp
-			runAsUser /usr/local/bin/dockutil --add $i --no-restart
-		fi
-	done
+	# echo "Adding Apps to Dock"
+	# for i in "${dockApps[@]}"
+	# do
+	# 	if [[ -e $i ]]
+	# 	then
+	# 		echo "Adding $i to Dock"
+	# 		# runAsUser defaults write com.apple.dock persistent-apps -array-add $persistentApp
+	# 		runAsUser /usr/local/bin/dockutil --add $i --no-restart
+	# 	fi
+	# done
 
 # 	# echo "$(date) | Adding Downloads Stack"
 # 	# runAsUser /usr/local/bin/kandji dock --add $otherAppDownloadFolder
