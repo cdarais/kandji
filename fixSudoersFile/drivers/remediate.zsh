@@ -25,6 +25,8 @@ then
 	do
 		rm -rf "${baseDirectory}/${files[$i]}"
 	done
+else
+	exit 1
 fi
 
 if [[ -e "$baseDirectory/1" ]]
