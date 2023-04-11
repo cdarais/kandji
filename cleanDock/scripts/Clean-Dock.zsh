@@ -29,7 +29,6 @@ then
 		if [[ -e $i ]]
 		then
 			runAsUser /usr/local/bin/dockutil --add $i --no-restart --allhomes
-			# runAsUser /usr/bin/defaults write com.apple.dock persistent-apps -array-add "<dict><key>tile-data</key><dict><key>file-data</key><dict><key>_CFURLString</key><string>$i</string><key>_CFURLStringType</key><integer>0</integer></dict></dict></dict>"
 		fi
 	done
 
