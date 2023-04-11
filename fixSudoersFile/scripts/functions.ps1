@@ -4,8 +4,8 @@ function compareRootPermissions {
 		$defaultData
 	)
 
-	$currentRoot = $currentData | Where-Object { $_ -like "*chris.darais*" -and $_ -notlike "#*" }
-	$defaultData = $defaultData | Where-Object { $_ -like "*chris.darais*" -and $_ -notlike "#*" }
+	$currentRoot = $currentData | Where-Object { $_ -like "*root*" -and $_ -notlike "#*" }
+	$defaultData = $defaultData | Where-Object { $_ -like "*root*" -and $_ -notlike "#*" }
 	
 	if ($currentRoot -ne $defaultData) {
 		return $false
