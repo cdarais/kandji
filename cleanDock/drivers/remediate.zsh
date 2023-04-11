@@ -13,17 +13,17 @@ files=(
 
 if [[ -e /usr/local/bin/pwsh ]]
 then
-	for i in {1..${#files[@]}}
-	do
-		curl -s "${baseUri}/scripts/${files[$i]}" -o "${baseDirectory}/${files[$i]}"
-	done
+	# for i in {1..${#files[@]}}
+	# do
+	# 	curl -s "${baseUri}/scripts/${files[$i]}" -o "${baseDirectory}/${files[$i]}"
+	# done
 
 	/bin/zsh "${baseDirectory}/${files[1]}" "${baseDirectory}" 2>&1
 
-	for i in {1..${#files[@]}}
-	do
-		rm -rf "${baseDirectory}/${files[$i]}"
-	done
+	# for i in {1..${#files[@]}}
+	# do
+	# 	rm -rf "${baseDirectory}/${files[$i]}"
+	# done
 fi
 
 if [[ -e "$baseDirectory/1" ]]
