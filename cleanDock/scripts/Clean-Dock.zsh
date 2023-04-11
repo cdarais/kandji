@@ -2,7 +2,7 @@
 
 while [[ "$#" -gt 0 ]]
 do case $1 in
-	-b|--base) base="/var/tmp"
+	-b|--base) base="$1"
 	shift;;
 	*) echo "Unknown parameter passed: $1"
 	exit 1;;
