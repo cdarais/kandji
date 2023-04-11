@@ -2,7 +2,7 @@
 
 while [[ "$#" -gt 0 ]]
 do case $1 in
-	-b|--base) base="$2"
+	-b|--base) base="/var/tmp"
 	shift;;
 	*) echo "Unknown parameter passed: $1"
 	exit 1;;
@@ -18,10 +18,10 @@ then
 	installLatestDockUtil
 	waitForDesktop
 
-	echo "$(date) | Adding file path to Finder"
+	echo "Adding file path to Finder"
 	runAsUser defaults write com.apple.dock ResetLaunchPad -bool FALSE
 
-	echo "$(date) | Setting up auto delete for trash"
+	echo "Setting up auto delete for trash"
 	runAsUser defaults write com.apple.finder "FXRemoveOldTrashItem" -bool "true"
 
 	echo "Disable show recent items"
@@ -43,12 +43,12 @@ then
 		fi
 	done
 
-	echo "$(date) | Adding Downloads Stack"
+	echo "Adding Downloads Stack"
 	runAsUser /usr/local/bin/dockutil --add '~/Downloads' --view auto --display stack --allhomes
 	
-	echo "$(date) | Restarting Dock"
+	echo "Restarting Dock"
 	killall Dock
 
-	echo "$(date) | Restarting Finder"
+	echo "Restarting Finder"
 	killall Finder
 fi

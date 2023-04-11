@@ -1,11 +1,9 @@
 #!/bin/zsh
 
-declare -a files
-
 baseDirectory="/var/tmp"
 baseUri="https://raw.githubusercontent.com/cdarais/kandji/main/cleanDock"
 
-files=(
+declare -a files=(
 	"Clean-Dock.zsh"
 	"functions.zsh"
 	"variables.zsh"
