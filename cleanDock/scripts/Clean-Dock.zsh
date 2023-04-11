@@ -1,7 +1,6 @@
 #!/bin/zsh
-base=$1
 
-echo "base $base"
+echo "base $1"
 
 source $base/variables.zsh
 source $base/functions.zsh
