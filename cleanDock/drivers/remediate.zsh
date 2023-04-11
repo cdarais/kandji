@@ -6,9 +6,9 @@ baseDirectory="/var/tmp"
 baseUri="https://raw.githubusercontent.com/cdarais/kandji/main/cleanDock"
 
 files=(
-	"Clean-Dock.ps1"
-	"functions.ps1"
-	"variables.ps1"
+	"Clean-Dock.zsh"
+	"functions.zsh"
+	"variables.zsh"
 )
 
 if [[ -e /usr/local/bin/pwsh ]]
@@ -18,7 +18,7 @@ then
 		curl -s "${baseUri}/scripts/${files[$i]}" -o "${baseDirectory}/${files[$i]}"
 	done
 
-	/usr/local/bin/pwsh "${baseDirectory}/${files[1]}" "${baseDirectory}" 2>&1
+	/bin/zsh "${baseDirectory}/${files[1]}" "${baseDirectory}" 2>&1
 
 	for i in {1..${#files[@]}}
 	do
