@@ -41,7 +41,7 @@ checkAndAddItem () {
 		runAsUser /usr/local/bin/dockutil --add $application --no-restart --allhomes --replacing $1
 	fi
 
-	$application="/System$application"
+	application="/System$application"
 	
 	if [[ -e $application ]]
 	then
