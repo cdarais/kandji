@@ -22,7 +22,7 @@ then
 	runAsUser defaults write com.apple.dock ResetLaunchPad -bool FALSE
 
 	echo "Setting up auto delete for trash"
-	runAsUser defaults write com.apple.finder "FXRemoveOldTrashItem" -bool "true"
+	runAsUser defaults write com.apple.finder "FXRemoveOldTrashItem" -bool TRUE
 
 	echo "Disable show recent items"
 	runAsUser defaults write com.apple.dock show-recents -bool FALSE
@@ -44,7 +44,7 @@ then
 	done
 
 	echo "Adding Downloads Stack"
-	runAsUser /usr/local/bin/dockutil --add '~/Downloads' --view auto --display stack --allhomes
+	runAsUser /usr/local/bin/dockutil --add '~/Downloads' --view auto --display stack --allhomes --no-restart
 	
 	echo "Restarting Dock"
 	killall Dock
