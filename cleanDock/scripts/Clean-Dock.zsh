@@ -21,7 +21,7 @@ then
 	runAsUser /usr/bin/defaults write com.apple.dock minimize-to-application -bool TRUE
 
 	echo "Removing Dock Persistent Apps"
-	runAsUser /usr/local/bin/dockutil --remove all --no-restart
+	runAsUser /usr/local/bin/dockutil --remove all --no-restart --allhomes
 	
 	echo "Adding Apps to Dock"
 	for i in "${dockApps[@]}"
