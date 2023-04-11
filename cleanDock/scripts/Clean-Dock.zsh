@@ -1,7 +1,7 @@
 #!/bin/zsh
-
-source $1/variables.zsh
-source $1/functions.zsh
+base=$1
+source $base/variables.zsh
+source $base/functions.zsh
 
 # if [[ -e /usr/local/bin/pwsh ]]
 # then
