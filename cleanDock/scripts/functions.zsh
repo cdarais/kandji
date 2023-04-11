@@ -9,7 +9,7 @@ waitForDesktop () {
 	echo "Dock is here, lets carry on"
 }
 
-runAsUser (){
+runAsUser () {
 	if [[ "$currentUser" != "loginwindow" ]]
 	then
 		echo "running as $currentUser"
@@ -31,4 +31,20 @@ installLatestDockUtil () {
 	sudo -E /usr/sbin/installer -pkg "$pkgLocation" -target /
 
 	sudo rm -rf "$pkgLocation"
+}
+
+checkAndAddItem () {
+	application="/Applications/$1.app"
+
+	if [[ -e $application ]]
+	then
+		runAsUser /usr/local/bin/dockutil --add $application --no-restart --allhomes --replacing $1
+	fi
+
+	$application="/System$application"
+	
+	if [[ -e $application ]]
+	then
+		runAsUser /usr/local/bin/dockutil --add $application --no-restart --allhomes --replacing $1
+	fi
 }

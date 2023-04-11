@@ -26,10 +26,7 @@ then
 	echo "Adding Apps to Dock"
 	for i in "${dockApps[@]}"
 	do
-		if [[ -e $i ]]
-		then
-			runAsUser /usr/local/bin/dockutil --add $i --no-restart --allhomes
-		fi
+		checkAndAddItem $i
 	done
 
 	echo "Adding Downloads Stack"
