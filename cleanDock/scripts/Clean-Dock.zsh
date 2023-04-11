@@ -8,12 +8,6 @@ then
 	installLatestDockUtil
 	waitForDesktop
 
-	echo "Adding filepath to finder"
-	runAsUser /usr/bin/defaults write com.apple.finder ShowPathbar -bool "true"
-
-	echo "Setting up auto delete for trash"
-	runAsUser /usr/bin/defaults write com.apple.finder "FXRemoveOldTrashItem" -bool "true"
-
 	echo "Setting Launchpad to default"
 	runAsUser /usr/bin/defaults write com.apple.dock ResetLaunchPad -bool "false"
 
@@ -37,7 +31,4 @@ then
 	
 	echo "Restarting Dock"
 	/usr/bin/killall Dock
-
-	echo "Restarting Finder"
-	/usr/bin/killall Finder
 fi
