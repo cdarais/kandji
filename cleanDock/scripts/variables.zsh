@@ -4,6 +4,7 @@ currentUser=$(echo "show State:/Users/ConsoleUser" | scutil | awk '/Name :/ { pr
 uid=$(id -u "$currentUser")
 
 declare -a dockApps=(
+	"Lanchpad"
 	"Microsoft Edge"
 	"Google Chrome"
 	"Firefox"
