@@ -8,14 +8,11 @@ then
 	installLatestDockUtil
 	waitForDesktop
 
-	# echo "Setting Launchpad to default"
-	# runAsUser /usr/bin/defaults write com.apple.dock ResetLaunchPad -bool "false"
-
 	echo "Disable show recent items"
 	runAsUser /usr/bin/defaults write com.apple.dock "show-recents" -bool "false"
 
 	echo "Enable Minimize Icons into Dock Icons"
-	runAsUser /usr/bin/defaults write com.apple.dock "minimize-to-application" -bool "true"
+	runAsUser /usr/bin/defaults write com.apple.dock "minimize-to-application" -bool TRUE
 
 	echo "Removing Dock Persistent Apps"
 	runAsUser /usr/local/bin/dockutil --remove all --no-restart --allhomes
