@@ -5,8 +5,8 @@ $scriptCommand = "$($args[0])/$auditFile -profileName ""$profileName"" -appName 
 
 Write-Output "checking data"
 if (Invoke-Expression -Command $scriptCommand ) {
+	Write-Host "no discrepency found"
+} else {
 	Write-Host "discrepency found"
 	New-Item -Path "$($args[0])/1" -ItemType File | Out-Null
-} else {
-	Write-Host "no discrepency found"
 }
