@@ -1,7 +1,7 @@
 . "$($args[0])/functions.ps1"
 . "$($args[0])/variables.ps1"
 
-Write-Output "$($args[0])/$auditFile"
+Write-Output "$profileName"
 $scriptCommand = "$($args[0])/$auditFile '-profileName ""$profileName"" -appName ""$appName"" -appVersion ""$appVersion""'"
 
 Write-Output "checking data"
