@@ -35,10 +35,8 @@ fi
 if [[ -e "$baseDirectory/1" ]]
 then
 	rm -rf "$baseDirectory/1"
-	echo "failure to revert to default"
+	echo "failure to install"
 	exit 1
 fi
-
-/usr/local/bin/kandji display-alert --title "Success" --message "Reset hosts file back to default"
 
 exit 0
