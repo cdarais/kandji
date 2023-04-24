@@ -2,7 +2,7 @@
 . "$($args[0])/variables.ps1"
 
 Write-Output "checking data"
-if (Invoke-Expression "$($args[0])/$auditFile -profileName ""$profileName"" -appName ""$appName"" -appVersion ""$appVersion""") {
+if (Invoke-Expression "$($args[0])/$auditFile '-profileName ""$profileName"" -appName ""$appName"" -appVersion ""$appVersion""'") {
 	Write-Host "discrepency found"
 	New-Item -Path "$($args[0])/1" -ItemType File | Out-Null
 } else {
