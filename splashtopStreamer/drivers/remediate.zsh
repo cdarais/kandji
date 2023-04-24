@@ -19,12 +19,17 @@ then
 		curl -s "${baseUri}/splashtopStreamer/scripts/${files[$i]}" -o "${baseDirectory}/${files[$i]}"
 	done
 
+	curl -s "${baseUri}/Get-AppAudit.ps1" -o "${baseDirectory}/Get-AppAudit.ps1"
+
 	/usr/local/bin/pwsh "${baseDirectory}/${files[1]}" "${baseDirectory}" 2>&1
 
 	for i in {1..${#files[@]}}
 	do
 		rm -rf "${baseDirectory}/${files[$i]}"
 	done
+
+	rm -rf "${baseDirectory}/Get-AppAudit.ps1"
+
 fi
 
 if [[ -e "$baseDirectory/1" ]]

@@ -18,7 +18,7 @@ then
 		curl -s "${baseUri}/splashtopStreamer/scripts/${files[$i]}" -o "${baseDirectory}/${files[$i]}"
 	done
 
-	curl -s "${baseUri}/Get-AppAudit.ps1" -o "${baseDirectory}/${files[$i]}"
+	curl -s "${baseUri}/Get-AppAudit.ps1" -o "${baseDirectory}/Get-AppAudit.ps1"
 
 	/usr/local/bin/pwsh "${baseDirectory}/${files[1]}" "${baseDirectory}" 2>&1
 
