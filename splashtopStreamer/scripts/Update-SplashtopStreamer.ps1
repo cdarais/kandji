@@ -4,7 +4,7 @@
 
 Write-Host "attempting to resolve discrepencies"
 
-chmod +x $args[0]/$installScript
+zsh -c "chmod +x $($args[0])/streamer/$installScript"
 
 zsh -c "$($args[0])/streamer/$installScript -i $($args[0])/streamer/$installFile -d $streamCode -w 0 -s 0 -v 0"
 
