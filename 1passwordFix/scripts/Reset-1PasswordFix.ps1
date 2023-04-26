@@ -10,7 +10,7 @@ foreach ($user in (Get-ChildItem -Path "/Users" | Where-Object { $excludedUsers 
 		$folder = Get-ChildItem -Path "/Users/$($user.name)/Library/$folderCheck"
 		
 		foreach ($fileCheck in $fileChecks) {
-			$folder | Where-Object { $_.name -like "*$fileCheck*" } | Remove-Item -Recurse -Force
+			$folder | Where-Object { $_.name -like "*$fileCheck*" } | Remove-Item -Force | Out-Null
 		}
 	
 	}
