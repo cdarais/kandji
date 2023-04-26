@@ -6,8 +6,10 @@ baseDirectory="/var/tmp"
 baseUri="https://raw.githubusercontent.com/cdarais/kandji/main/1passwordFix"
 
 files=(
-	"Reset-1PasswordFix.ps1"
+	"Remediate-1PasswordFix.ps1"
+	"functions.ps1"
 	"variables.ps1"
+	"Audit-1PasswordFix.ps1"
 )
 
 if [[ -e /usr/local/bin/pwsh ]]
@@ -30,7 +32,5 @@ then
 	rm -rf "$baseDirectory/1"
 	exit 1
 fi
-
-/usr/local/bin/kandji display-alert --title "Success" --message "Successfully reset DNS."
 
 exit 0

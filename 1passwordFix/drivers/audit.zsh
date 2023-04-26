@@ -7,6 +7,8 @@ baseUri="https://raw.githubusercontent.com/cdarais/kandji/main/1passwordFix"
 
 files=(
 	"Audit-1PasswordFix.ps1"
+	"functions.ps1"
+	"variables.ps1"
 )
 
 if [[ -e /usr/local/bin/pwsh ]]
