@@ -4,7 +4,9 @@ function GetRemovalItems {
 	)
 
 	$itemsToRename = New-Object System.Collections.ArrayList	
-	$files = Get-ChildItem -Path "/Users/$currentUser/Google Drive/My Drive"
+	$files = Get-ChildItem -Path "/Users/$currentUser/Google Drive/My Drive" -Force | Out-Null
+
+	$files.Count()
 			
 	foreach ($char in $badChars) {
 	
