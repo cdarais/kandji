@@ -13,7 +13,8 @@ $badChars = @(
 	'%',
 	'&',
 	'{',
-	'}'
+	'}',
+	'a'
 )
 
 $excludedUsers = @(

@@ -9,7 +9,8 @@ $items.Add((GetRemovalItems -excludedUsers $excludedUsers -folderChecks $folderC
 
 foreach ($i in $items ) {
 	foreach ($char in $badChars) {
-		Rename-Item -Path $i.FullName -NewName $i.Name.Replace($char, "")
+		# Rename-Item -Path $i.FullName -NewName $i.Name.Replace($char, "")
+		$i
 	}
 }
 
