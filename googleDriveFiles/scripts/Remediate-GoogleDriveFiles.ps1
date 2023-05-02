@@ -4,14 +4,19 @@
 
 Write-Host "resetting google drive files"
 
-# $items = New-Object System.Collections.ArrayList
-# $items.Add((GetRemovalItems -badChars $badChars)) | Out-Null
-# $items.Count
-foreach ($i in (GetRemovalItems -badChars $badChars) ) {
-	$i.Name
-	foreach ($char in $badChars) {
-		# Rename-Item -Path $i.FullName -NewName $i.Name.Replace($char, "")
+foreach ($char in $badChars) {
+	While ( (Get-ChildItem -Path "/Users/$currentUser/Google Drive/My Drive" -Force -Directory | Where-Object { $_.Name.ToLower().Contains($char) }) ) {
+		$item = (Get-ChildItem -Path "/Users/$currentUser/Google Drive/My Drive" -Force -Directory | Where-Object { $_.Name.ToLower().Contains($char) })[0]
+		Rename-Item -Path $item.FullName -NewName $item.Name.Replace($char, "_")
 	}
 }
+
+foreach ($char in $badChars) {
+	While ( (Get-ChildItem -Path "/Users/$currentUser/Google Drive/My Drive" -Force | Where-Object { $_.Name.ToLower().Contains($char) }) ) {
+		$item = (Get-ChildItem -Path "/Users/$currentUser/Google Drive/My Drive" -Force | Where-Object { $_.Name.ToLower().Contains($char) })[0]
+		Rename-Item -Path $item.FullName -NewName $item.Name.Replace($char, "_")
+	}
+}
+
 
 Invoke-Expression "$($args[0])/Audit-GoogleDriveFiles.ps1 $($args[0])"

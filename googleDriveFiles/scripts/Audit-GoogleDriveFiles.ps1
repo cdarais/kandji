@@ -3,7 +3,7 @@
 
 Write-Host "Manual request to reset"
 
-if ( GetRemovalItems -badChars $badChars  ) {
+if ( GetRenameItems -badChars $badChars  ) {
 	
 	Write-Host "bad chars found"
 	

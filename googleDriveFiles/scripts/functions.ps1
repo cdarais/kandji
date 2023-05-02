@@ -1,4 +1,4 @@
-function GetRemovalItems {
+function GetRenameItems {
 	param (
 		$badChars
 	)

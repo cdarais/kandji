@@ -14,7 +14,7 @@ $badChars = @(
 	'&',
 	'{',
 	'}',
-	'a'
+	'@'
 )
 
 $currentUser = Write-Output "show State:/Users/ConsoleUser" | scutil | awk '/Name :/ { print $3 }'
