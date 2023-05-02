@@ -3,10 +3,8 @@ function GetRemovalItems {
 		$badChars
 	)
 
-	$itemsToRename = New-Object System.Collections.ArrayList	
-	$files = Get-ChildItem -Path "/Users/$currentUser/Google Drive/My Drive" -Force | Out-Null
-
-	$files.Count()
+	$itemsToRename = New-Object System.Collections.ArrayList
+	$files = Get-ChildItem -Path "/Users/$currentUser/Google Drive/My Drive" -Force
 			
 	foreach ($char in $badChars) {
 	
@@ -16,6 +14,5 @@ function GetRemovalItems {
 				
 		}
 	}
-
 	return $itemsToRename
 }
