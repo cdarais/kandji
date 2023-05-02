@@ -4,7 +4,7 @@
 $uri = "$($args[1])/data"
 
 Write-Host "installing missing fonts"
-foreach ($missingFont in checkForFonts) {
+foreach ( $missingFont in (checkForFonts) ) {
 	Write-Host "installing $missingFont"
 	Invoke-WebRequest -Uri "$uri/$missingFont" -OutFile "$($libraries[0])/$missingFont"
 }
