@@ -8,20 +8,16 @@ function GetRemovalItems {
 	$itemsToRename = New-Object System.Collections.ArrayList
 
 
-	foreach ($user in (Get-ChildItem -Path "/Users" | Where-Object { $excludedUsers -notcontains $_.user })) {
 	
-		foreach ($folderCheck in $folderChecks) {
-			$folder = Get-ChildItem -Path "/Users/$currentUser/Google Drive/My Drive"
-			ls "/Users/$currentUser/Google Drive/My Drive"
+	$files = Get-ChildItem -Path "/Users/$currentUser/Google Drive/My Drive"
+	ls "/Users/$currentUser/Google Drive/My Drive"
 			
-			foreach ($char in $badChars) {
+	foreach ($char in $badChars) {
 	
-				foreach ($file in ($folder | Where-Object { $_.name.Contains($char) })) {
+		foreach ($file in ($files | Where-Object { $_.name.Contains($char) })) {
 		
-					$itemsToRename.Add($file) | Out-Null
+			$itemsToRename.Add($file) | Out-Null
 				
-				}
-			}
 		}
 	}
 
