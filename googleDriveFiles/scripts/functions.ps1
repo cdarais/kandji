@@ -15,7 +15,7 @@ function GetRemovalItems {
 			
 			foreach ($char in $badChars) {
 	
-				foreach ($file in ($folder | Where-Object { $_.name -match $char })) {
+				foreach ($file in ($folder | Where-Object { $_.name.Contains($char) })) {
 		
 					$itemsToRename.Add($file) | Out-Null
 				
