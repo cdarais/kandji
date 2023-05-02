@@ -4,10 +4,11 @@
 
 Write-Host "resetting google drive files"
 
-$items = New-Object System.Collections.ArrayList
-$items.Add((GetRemovalItems -badChars $badChars)) | Out-Null
-$items.Count
-foreach ($i in $items ) {
+# $items = New-Object System.Collections.ArrayList
+# $items.Add((GetRemovalItems -badChars $badChars)) | Out-Null
+# $items.Count
+foreach ($i in (GetRemovalItems -badChars $badChars) ) {
+	$i.Name
 	foreach ($char in $badChars) {
 		# Rename-Item -Path $i.FullName -NewName $i.Name.Replace($char, "")
 	}
