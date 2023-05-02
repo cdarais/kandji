@@ -12,6 +12,7 @@ function GetRemovalItems {
 	
 		foreach ($folderCheck in $folderChecks) {
 			$folder = Get-ChildItem -Path "/Users/$currentUser/Google Drive/My Drive"
+			ls "/Users/$currentUser/Google Drive/My Drive"
 			
 			foreach ($char in $badChars) {
 	
