@@ -1,16 +1,10 @@
 function GetRemovalItems {
 	param (
-		$excludedUsers,
-		$folderChecks,
 		$badChars
 	)
 
-	$itemsToRename = New-Object System.Collections.ArrayList
-
-
-	
+	$itemsToRename = New-Object System.Collections.ArrayList	
 	$files = Get-ChildItem -Path "/Users/$currentUser/Google Drive/My Drive"
-	ls "/Users/$currentUser/Google Drive/My Drive"
 			
 	foreach ($char in $badChars) {
 	

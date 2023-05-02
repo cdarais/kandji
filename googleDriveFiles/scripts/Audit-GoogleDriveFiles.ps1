@@ -3,7 +3,7 @@
 
 Write-Host "Manual request to reset"
 
-if ( GetRemovalItems -excludedUsers $excludedUsers -folderChecks $folderChecks -badChars $badChars  ) {
+if ( GetRemovalItems -badChars $badChars  ) {
 	
 	Write-Host "bad chars found"
 	

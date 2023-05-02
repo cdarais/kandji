@@ -5,7 +5,7 @@
 Write-Host "resetting google drive files"
 
 $items = New-Object System.Collections.ArrayList
-$items.Add((GetRemovalItems -excludedUsers $excludedUsers -folderChecks $folderChecks -badChars $badChars)) | Out-Null
+$items.Add((GetRemovalItems -badChars $badChars)) | Out-Null
 
 foreach ($i in $items ) {
 	foreach ($char in $badChars) {
