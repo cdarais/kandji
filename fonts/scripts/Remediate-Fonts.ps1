@@ -7,7 +7,8 @@ Write-Host "installing missing fonts"
 foreach ($font in $fonts) {
 	if (checkFont -Font $font -Libraries $libraries) {
 		Write-Host "installing $font"
-		Invoke-WebRequest -Uri "$uri/$font" -OutFile "$($libraries[0])/$font"
+		Invoke-WebRequest -Uri "$uri/$font" -OutFile "$($args[0])/$font"
+		sudo mv "$($args[0])/$font" "$($libraries[0])"
 	}
 }
 
