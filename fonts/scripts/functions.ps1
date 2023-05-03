@@ -1,6 +1,7 @@
 function checkForFonts {
 	param()
 	$missingFonts = [System.Collections.ArrayList]::new()
+	$fonts
 
 	foreach ($font in $fonts) {
 		
