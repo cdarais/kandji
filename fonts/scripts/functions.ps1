@@ -18,16 +18,3 @@ function checkForFonts {
 
 	return $missingFonts
 }
-
-# function checkFont {
-# 	[CmdletBinding()]
-# 	param (
-# 		[Parameter(
-# 			Position = 0
-# 		)][string]$Font,
-# 		[Parameter(
-# 			Position =1
-# 		)][System.Collections.ArrayList]$Libraries
-# 	)
-# 	return (-not ($Libraries | Where-Object { Test-Path -Path "$_/$Font" -PathType Leaf }))
-# }
