@@ -1,3 +1,5 @@
+$currentUser = Write-Output "show State:/Users/ConsoleUser" | scutil | awk '/Name :/ { print $3 }'
+
 $fonts = @(
 	"Inter-Black.otf",
 	"Inter-Black.ttf",
@@ -61,7 +63,10 @@ $fonts = @(
 
 $libraries = @(
 	"/Library/Fonts",
-	"~/Library/Fonts",
+	"/Users/$currentUser/Library/Fonts",
 	"/System/Library/Fonts",
 	"/System/Library/Font/Supplemental"
 )
+
+$fonts | Out-Null
+$libraries | Out-Null

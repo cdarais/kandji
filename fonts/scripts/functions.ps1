@@ -1,23 +1,13 @@
-$missingFonts = [System.Collections.ArrayList]::new()
-
 function checkForFonts {
 	param()
+	$missingFonts = [System.Collections.ArrayList]::new()
+
 	foreach ($font in $fonts) {
-		$fontNotFound = $true
-		foreach ($library in $libraries) {
-			if (Test-Path -Path "$library/$font" -PathType Leaf) {
-				$fontNotFound = $false
-				break
-			}
-		}
-		if ($fontNotFound) {
+		
+		if ( -not ($libraries | Where-Object { Test-Path -Path "$_/$font" -PathType Leaf }) ) {
 			$missingFonts.Add($font)
 		}
 	}
 
-	if ($missingFonts.Count -gt 0) {
-		return $missingFonts
-	}
-
-	return $null
+	return $missingFonts
 }
