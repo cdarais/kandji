@@ -2,7 +2,7 @@
 . "$($args[0])/variables.ps1"
 
 $missingFonts = checkForFonts
-$missingFonts
+$fonts
 
 if ($null -ne $missingFonts) {
 	Write-Host "missing font count: $($missingFonts.Count)"
