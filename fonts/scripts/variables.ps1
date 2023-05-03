@@ -47,18 +47,18 @@ $fonts = @(
 	"Lato-SemiboldItalic.ttf",
 	"Lato-Thin.ttf",
 	"Lato-ThinItalic.ttf",
-	"PlayfairDisplay-Black.tff",
-	"PlayfairDisplay-BlackItalic.tff",
-	"PlayfairDisplay-Bold.tff",
-	"PlayfairDisplay-BoldItalic.tff",
-	"PlayfairDisplay-ExtraBold.tff",
-	"PlayfairDisplay-ExtraBoldItalic.tff",
-	"PlayfairDisplay-Italic.tff",
-	"PlayfairDisplay-Medium.tff",
-	"PlayfairDisplay-MediumItalic.tff",
-	"PlayfairDisplay-Regular.tff",
-	"PlayfairDisplay-SemiBold.tff",
-	"PlayfairDisplay-SemiBoldItalic.tff"
+	"PlayfairDisplay-Black.ttf",
+	"PlayfairDisplay-BlackItalic.ttf",
+	"PlayfairDisplay-Bold.ttf",
+	"PlayfairDisplay-BoldItalic.ttf",
+	"PlayfairDisplay-ExtraBold.ttf",
+	"PlayfairDisplay-ExtraBoldItalic.ttf",
+	"PlayfairDisplay-Italic.ttf",
+	"PlayfairDisplay-Medium.ttf",
+	"PlayfairDisplay-MediumItalic.ttf",
+	"PlayfairDisplay-Regular.ttf",
+	"PlayfairDisplay-SemiBold.ttf",
+	"PlayfairDisplay-SemiBoldItalic.ttf"
 )
 
 $libraries = @(
