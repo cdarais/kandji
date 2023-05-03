@@ -7,7 +7,6 @@ baseUri="https://raw.githubusercontent.com/cdarais/kandji/main/resetDns"
 
 files=(
 	"Reset-Dns.ps1"
-	"variables.ps1"
 )
 
 if [[ -e /usr/local/bin/pwsh ]]
