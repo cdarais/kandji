@@ -39,18 +39,15 @@ function writeOut {
 
 }
 function checkProfile {
-	param(
-	)
+	param()
 
 	$profileNames = sudo profiles show | grep $profileName
 
-	if ($null -eq $profileNames -or ($profileNames | ForEach-Object { $_ -like "*$profileName*" }) -contains $false) {
+	if ($null -eq $profileNames -or ($profileNames | ForEach-Object { $_.ToLower() -like "*$($profileName.ToLower())*" }) -contains $false) {
 		"$profileName not installed" | writeOut
 		return $false
 	}
-	if (!$isSilent) {
 
-	}
 	"$profileName installed" | writeOut
 	return $true
 
