@@ -9,10 +9,12 @@ $items = New-Object System.Collections.ArrayList
 $items.Add((GetRemovalItems -excludedUsers $excludedUsers -folderChecks $folderChecks -fileChecks $fileChecks)) | Out-Null
 
 foreach ($i in $items ) {
-	if ($i.GetType().Name -eq "FileInfo") {
-		$i | Remove-Item -Force
-	} else {
-		$i | Remove-Item -Recurse -Force
+	if ( Test-Path -Path $i.FullName ) {
+		if ($i.GetType().Name -eq "FileInfo") {
+			$i | Remove-Item -Force
+		} else {
+			$i | Remove-Item -Recurse -Force
+		}
 	}
 }
 
