@@ -47,6 +47,4 @@ then
 	exit 1
 fi
 
-/usr/local/bin/kandji display-alert --title "Success" --message "Successfully fixed your google drive files"
-
 exit 0
