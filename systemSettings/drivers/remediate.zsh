@@ -4,7 +4,7 @@ baseDirectory="/var/tmp"
 baseUri="https://raw.githubusercontent.com/cdarais/kandji/main/systemSettings"
 
 declare -a files=(
-	"Remediate-SystemSettings.ps1",
+	"Remediate-SystemSettings.ps1"
 	"Audit-SystemSettings.ps1"
 	"variables.ps1"
 )
@@ -20,7 +20,7 @@ then
 
 	for i in {1..${#files[@]}}
 	do
-		# rm -rf "${baseDirectory}/${files[$i]}"
+		rm -rf "${baseDirectory}/${files[$i]}"
 	done
 fi
 
