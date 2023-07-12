@@ -5,6 +5,7 @@ declare -a writeSettings=(
 	"system.preferences"
 	"system.preferences.network"
 	"system.services.systemconfiguration.network"
+	"com.apple.wifi"
 	"system.preferences.battery"
 )
 
