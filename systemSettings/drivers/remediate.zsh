@@ -4,9 +4,9 @@ baseDirectory="/var/tmp"
 baseUri="https://raw.githubusercontent.com/cdarais/kandji/main/systemSettings"
 
 declare -a files=(
-	"Remediate-SystemSettings.zsh",
+	"Remediate-SystemSettings.ps1",
 	"Audit-SystemSettings.ps1"
-	"variables.zsh"
+	"variables.ps1"
 )
 
 if [[ -e /usr/local/bin/pwsh ]]
@@ -16,7 +16,7 @@ then
 		curl -s "${baseUri}/scripts/${files[$i]}" -o "${baseDirectory}/${files[$i]}"
 	done
 
-	/bin/zsh ${baseDirectory}/${files[1]} ${baseDirectory}
+	/usr/local/bin/pwsh ${baseDirectory}/${files[1]} ${baseDirectory}
 
 	for i in {1..${#files[@]}}
 	do
