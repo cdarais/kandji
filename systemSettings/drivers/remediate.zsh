@@ -16,7 +16,7 @@ then
 		curl -s "${baseUri}/scripts/${files[$i]}" -o "${baseDirectory}/${files[$i]}"
 	done
 
-	/usr/local/bin/pwsh ${baseDirectory}/${files[1]} ${baseDirectory}
+	/usr/local/bin/pwsh "${baseDirectory}/${files[1]}" "${baseDirectory}" 2>&1
 
 	for i in {1..${#files[@]}}
 	do
