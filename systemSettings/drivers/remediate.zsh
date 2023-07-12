@@ -4,7 +4,7 @@ baseDirectory="/var/tmp"
 baseUri="https://raw.githubusercontent.com/cdarais/kandji/main/systemSettings"
 
 declare -a files=(
-	"Remediate-SystemSettings.ps1",
+	"Remediate-SystemSettings.zsh",
 	"Audit-SystemSettings.ps1"
 	"variables.ps1"
 )
