@@ -20,7 +20,7 @@ then
 
 	for i in {1..${#files[@]}}
 	do
-		rm -rf "${baseDirectory}/${files[$i]}"
+		# rm -rf "${baseDirectory}/${files[$i]}"
 	done
 fi
 
