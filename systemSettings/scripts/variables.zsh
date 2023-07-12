@@ -4,6 +4,7 @@ uid=$(id -u "$currentUser")
 declare -a writeSettings=(
 	"system.preferences"
 	"system.preferences.network"
+	"system.services.systemconfiguration.network"
 	"system.preferences.battery"
 )
 
