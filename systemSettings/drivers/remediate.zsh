@@ -6,6 +6,7 @@ baseUri="https://raw.githubusercontent.com/cdarais/kandji/main/systemSettings"
 declare -a files=(
 	"Remediate-SystemSettings.ps1",
 	"Audit-SystemSettings.ps1"
+	"variables.ps1"
 )
 
 if [[ -e /usr/local/bin/pwsh ]]

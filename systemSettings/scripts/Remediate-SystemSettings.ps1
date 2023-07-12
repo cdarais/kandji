@@ -1,3 +1,5 @@
-/usr/bin/security authorizationdb write system.preferences allow
+. "$($args[0])/variables.ps1"
 
-/usr/bin/security authorizationdb write system.preferences.battery allow
+foreach ($s in $systemSettings) {
+	/usr/bin/security $s.file $s.readWrite $s.pane $s.blockAllow
+}
