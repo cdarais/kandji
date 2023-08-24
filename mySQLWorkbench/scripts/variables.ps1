@@ -1,5 +1,5 @@
 $auditFile = "Get-AppAudit.ps1"
-$appName = "MySQL Workbench.app"
+$appName = "MySQLWorkbench.app"
 $profileName = $null
 $appVersion = "8.0.34.CE"
 
