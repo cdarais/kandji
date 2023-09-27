@@ -4,7 +4,7 @@ function checkXcode{
 	)
 	$installedVersion = pkgutil --pkg-info com.apple.pkg.CLTools_Executables | awk '/version: / {print $NF }' | cut -d. -f-2
 
-	if ($installedVersion -gt $version ) {
+	if ($installedVersion -ge $version ) {
 		return $true
 	}
 
