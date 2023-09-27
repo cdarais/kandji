@@ -1,7 +1,7 @@
 $auditFile = "Get-AppAudit.ps1"
 $appName = $null
 $profileName = $null
-$appVersion = "2399"
+$appVersion = "15.0"
 
 Write-Output $auditFile | Out-Null
 Write-Output $appName | Out-Null

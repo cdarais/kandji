@@ -1,10 +1,8 @@
 . "$($args[0])/functions.ps1"
 . "$($args[0])/variables.ps1"
 
-$version = xcode-select -v
-
 Write-Output "checking data"
-if ( checkXcode -version $version ) {
+if ( checkXcode -version $appVersion ) {
 	Write-Host "no discrepency found"
 } else {
 	Write-Host "discrepency found"
