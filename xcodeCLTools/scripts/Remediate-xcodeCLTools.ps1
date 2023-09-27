@@ -5,4 +5,4 @@
 Write-Host "attempting to resolve discrepencies"
 
 
-Invoke-Expression "$($args[0])/Audit-MySQLWorkbench.ps1 $($args[0])"
+Invoke-Expression "$($args[0])/Audit-xcodeCLTools.ps1 $($args[0])"
