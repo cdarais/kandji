@@ -6,4 +6,3 @@ $defaultDockerFile = '{"allowedOrgs":["workboardinc"]}'
 Write-Output $dockerFile | Out-Null
 Write-Output $defaultDockerFile | Out-Null
 Write-Output $currentDockerFile | Out-Null
-Write-Output $currentDockerFileValidity | Out-Null
