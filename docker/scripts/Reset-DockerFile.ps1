@@ -3,8 +3,6 @@
 
 Write-Host "attempting to resolve discrepencies"
 
-$currentDockerFile.allowedOrgs = "workboardinc"
-
 $currentDockerFile | ConvertTo-Json -Depth 100 | Out-File -FilePath $dockerFile
 # Set-Content -Path $dockerFile -Value $defaultDockerFile
 

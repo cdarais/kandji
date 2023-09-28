@@ -1,8 +1,7 @@
 $dockerFile = "/Library/Application Support/com.docker.docker/registry.json"
 
-$currentDockerFileValidity = Get-Content -Path $dockerFile | Test-Json
-$currentDockerFile = (Get-Content -Path $dockerFile) | ConvertFrom-Json
-$defaultDockerFile = '{"allowedOrgs":["workboardinc"]}' | ConvertFrom-Json
+$currentDockerFile = (Get-Content -Path $dockerFile)
+$defaultDockerFile = '{"allowedOrgs":["workboardinc"]}'
 
 Write-Output $dockerFile | Out-Null
 Write-Output $defaultDockerFile | Out-Null
