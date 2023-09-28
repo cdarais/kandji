@@ -4,7 +4,7 @@ function compareDockerFiles {
 		$defaultData
 	)
 
-	if ($currentRoot -ne $defaultData) {
+	if ($currentData -ne $defaultData) {
 		return $false
 	}	
 
