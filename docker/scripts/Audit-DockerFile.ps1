@@ -8,6 +8,6 @@ if (compareDockerFiles -currentData $currentDockerFile -defaultData $defaultDock
 	Write-Host "no discrepency found"
 } else {
 	Write-Host "discrepency found"
-	Write-Host "expected $defaultDockerFile and found $currentDockerFile"
+	Write-Host "expected ""$defaultDockerFile"" and found ""$currentDockerFile"""
 	New-Item -Path "$($args[0])/1" -ItemType File | Out-Null
 }
