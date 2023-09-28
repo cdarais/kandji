@@ -3,7 +3,7 @@
 declare -a files
 
 baseDirectory="/var/tmp"
-baseUri="https://raw.githubusercontent.com/cdarais/kandji/main/DockerFile"
+baseUri="https://raw.githubusercontent.com/cdarais/kandji/main/docker"
 
 files=(
 	"Reset-DockerFile.ps1"
