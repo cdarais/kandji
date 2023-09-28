@@ -4,5 +4,5 @@ function compareDockerFiles {
 		$defaultData
 	)
 
-	return ($currentData.allowedOrgs -eq $defaultData)
+	return ( $currentData.allowedOrgs -eq $defaultData.allowedOrgs )
 }

@@ -7,7 +7,7 @@ if (compareDockerFiles -currentData $currentDockerFile -defaultData $defaultDock
 	return
 }
 
-if ( -not (Get-Content -Path $dockerFile | Test-Json) ) {
+if ( (Get-Content -Path $dockerFile | Test-Json) -ne $true ) {
 	Write-Host "bad json found"
 	New-Item -Path "$($args[0])/1" -ItemType File | Out-Null
 	return
