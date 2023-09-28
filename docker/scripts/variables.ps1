@@ -1,6 +1,6 @@
 $dockerFile = "/Library/Application Support/com.docker.docker/registry.json"
 
-$currentDockerFile = (Get-Content -Path $dockerFile)
+$currentDockerFile = Get-Content -Path $dockerFile
 $defaultDockerFile = '{"allowedOrgs":["workboardinc"]}'
 
 Write-Output $dockerFile | Out-Null
