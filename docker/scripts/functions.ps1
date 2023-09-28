@@ -4,7 +4,7 @@ function compareDockerFiles {
 		$defaultData
 	)
 
-	if (-not ($dockerFile | Test-Json)) { return $false }
+	if (-not (Get-Content -Path $dockerFile | Test-Json)) { return $false }
 
 	return ($currentData.allowedOrgs -eq $defaultData)
 }
