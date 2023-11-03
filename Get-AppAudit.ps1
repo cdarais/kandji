@@ -85,7 +85,7 @@ function checkVersion {
 		return $false
 	}
 
-	if ([version]$appVersion -ge [version]$versionString) {
+	if ([version]$versionString -lt [version]$appVersion) {
 		"expected to find ""$appversion"" and found ""$versionString""" | writeOut
 		return $false
 	}
