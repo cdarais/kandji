@@ -1,4 +1,12 @@
 Write-Host "resetting dns"
 
-dscacheutil -flushcache
-killall -HUP mDNSResponder
+try {
+	dscacheutil -flushcache
+} catch {}
+
+try {
+	killall -HUP mDNSResponder
+}
+catch {
+	Write-Host "mDNSResponder not running"
+}
