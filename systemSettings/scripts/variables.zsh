@@ -3,6 +3,7 @@ uid=$(id -u "$currentUser")
 
 declare -a writeSettings=(
 	"system.preferences"
+	"system.preferences.datetime"
 	"system.preferences.network"
 	"system.services.systemconfiguration.network"
 	"com.apple.wifi"
