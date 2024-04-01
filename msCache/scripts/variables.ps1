@@ -1,5 +1,6 @@
 $folderChecks = @(
-	"Application Support/Microsoft"
+	"Application Support/Microsoft",
+	"Group Containers/UBF8T346G9.com.microsoft.teams"
 )
 
 $excludedUsers = @(
