@@ -6,7 +6,7 @@ Write-Host "attempting to resolve discrepencies"
 
 if ( Test-Path $apppath ) {
 
-	sudo Installer -pkg "$($args[0])/streamer/SplashtopStreamer.pkg" -target "/"
+	sudo Installer -pkg "$($args[0])/streamer/Splashtop Streamer.pkg" -target "/"
 
 } else {
 
