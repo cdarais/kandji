@@ -36,7 +36,7 @@ function updateDevice {
 
 	$headers = makeHeaders -token $token
 
-	$device = getDevice -serial $serial
+	$device = getDevice -token $token -serial $serial
 
 	$body = New-Object "System.Collections.Generic.Dictionary[[String],[String]]"
 	$body.Add("blueprint_id", $newBlueprint)
