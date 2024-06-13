@@ -15,7 +15,7 @@ function getDevice {
 		$serial
 	)
 
-	$headers = makeHeaders -token
+	$headers = makeHeaders -token $token
 	
 	$ProgressPreference = 'SilentlyContinue'
 	$device = Invoke-WebRequest -Uri "$apiUrl/devices" -Headers $headers -Method Get
@@ -34,7 +34,7 @@ function updateDevice {
 		$serial
 	)
 
-	$headers = makeHeaders -$token
+	$headers = makeHeaders -token $token
 
 	$device = getDevice -serial $serial
 

@@ -5,7 +5,7 @@ declare -a files
 baseDirectory="/var/tmp"
 baseUri="https://raw.githubusercontent.com/cdarais/kandji/main"
 token="$1"
-echo "token $1"
+
 files=(
 	"Audit-DeviceBlueprint.ps1"
 	"functions.ps1"
