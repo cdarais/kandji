@@ -65,7 +65,7 @@ $libraries = @(
 	"/Library/Fonts",
 	"/Users/$currentUser/Library/Fonts",
 	"/System/Library/Fonts",
-	"/System/Library/Font/Supplemental"
+	"/System/Library/Fonts/Supplemental"
 )
 
 $fonts | Out-Null
