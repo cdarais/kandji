@@ -23,7 +23,7 @@ if [[ -e /usr/local/bin/pwsh ]]
 then
 	for i in {1..${#files[@]}}
 	do
-		curl -s "${baseUri}/deviceBlueprint/scripts/${files[$i]}" -o "${baseDirectory}/${files[$i]}"
+		curl -s "${baseUri}/blueprintSwitch/scripts/${files[$i]}" -o "${baseDirectory}/${files[$i]}"
 	done
 
 	curl -s "${baseUri}/Get-AppAudit.ps1" -o "${baseDirectory}/Get-AppAudit.ps1"
