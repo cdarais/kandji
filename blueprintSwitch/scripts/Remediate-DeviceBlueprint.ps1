@@ -4,8 +4,8 @@ $token = $args[2]
 $oldBlueprint = $args[3]
 $newBlueprint = $args[4]
 
-. "$baseDirectory/functions.ps1" -company $company -oldBlueprint $oldBlueprint -newBlueprint $newBlueprint
-. "$baseDirectory/variables.ps1"
+. "$baseDirectory/functions.ps1"
+. "$baseDirectory/variables.ps1" -company $company -oldBlueprint $oldBlueprint -newBlueprint $newBlueprint
 
 
 Write-Host "attempting to resolve discrepencies"
