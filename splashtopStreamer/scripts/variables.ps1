@@ -1,7 +1,7 @@
 $auditFile = "Get-AppAudit.ps1"
 $appName = "Splashtop Streamer.app"
 $profileName = "PPPC - Splashtop Streamer"
-$appVersion = "3.7.0.0"
+$appVersion = "3.8.0.2"
 $streamerCode = "XXX5Y3TX4JJ5"
 $installFile = "streamer.dmg"
 $installScript = "deploy_splashtop_streamer.sh"
