@@ -1,4 +1,3 @@
-# scripts/functions.ps1
 $ErrorActionPreference = "Stop"
 
 function Write-Info { param( $message ) Write-Host "[INFO] $message" }

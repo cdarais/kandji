@@ -1,6 +1,5 @@
 $ErrorActionPreference = "Stop"
 
-# Source the helper files passed via argument
 . "$PSScriptRoot/functions.ps1"
 . "$PSScriptRoot/variables.ps1"
 
