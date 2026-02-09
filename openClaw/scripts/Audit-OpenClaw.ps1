@@ -1,13 +1,14 @@
 $ErrorActionPreference = "Stop"
 
-. "$PSScriptRoot/variables.ps1"
+# Source the helper files passed via argument
 . "$PSScriptRoot/functions.ps1"
+. "$PSScriptRoot/variables.ps1"
 
 $found = $false
 Write-Host "=== Kandji Audit: $($script:appName) ==="
 
 # 1) Running processes
-Write-Info "Checking running processes…"
+Write-Info "Checking running processes..."
 $procHits = Find-OpenClawProcesses
 if ($procHits.Count -gt 0) {
   Write-Fail "Found running OpenClaw-related processes:"
@@ -18,16 +19,23 @@ else {
   Write-Ok "No OpenClaw-related processes found."
 }
 
-# 2) Brew formula installed
+# 2) Brew formula/cask installed
 $brew = Get-BrewPath
 if ($brew) {
-  Write-Info "Checking Homebrew for installed formula 'openclaw'…"
-  if (Test-BrewHasFormula -BrewPath $brew -FormulaName "openclaw") {
-    Write-Fail "Homebrew formula installed: openclaw"
+  Write-Info "Checking Homebrew for 'openclaw' (formula OR cask)..."
+
+  $hasFormula = $false
+  $hasCask = $false
+
+  try { $hasFormula = ((& $brew list --formula 2>$null) -contains "openclaw") } catch {}
+  try { $hasCask = ((& $brew list --cask 2>$null) -contains "openclaw") } catch {}
+
+  if ($hasFormula -or $hasCask) {
+    Write-Fail "Homebrew package installed: openclaw (formula=$hasFormula, cask=$hasCask)"
     $found = $true
   }
   else {
-    Write-Ok "No Homebrew formula named 'openclaw' installed."
+    Write-Ok "No Homebrew package named 'openclaw' installed."
   }
 }
 else {
@@ -35,7 +43,7 @@ else {
 }
 
 # 3) Known binary paths
-Write-Info "Checking common binary paths…"
+Write-Info "Checking common binary paths..."
 $bins = Get-ExistingPaths -Paths $script:binaries
 if ($bins.Count -gt 0) {
   Write-Fail "Found OpenClaw binary/shim paths:"
@@ -47,7 +55,7 @@ else {
 }
 
 # 4) Global node_modules openclaw
-Write-Info "Checking global node_modules paths…"
+Write-Info "Checking global node_modules paths..."
 $mods = Get-ExistingPaths -Paths $script:modules
 if ($mods.Count -gt 0) {
   Write-Fail "Found global OpenClaw module directory:"
@@ -59,7 +67,7 @@ else {
 }
 
 # 5) Per-user ~/.openclaw
-Write-Info "Checking per-user state directories…"
+Write-Info "Checking per-user state directories..."
 $userState = Find-OpenClawUserStateDirs
 if ($userState.Count -gt 0) {
   Write-Fail "Found per-user OpenClaw state directories:"
@@ -72,10 +80,12 @@ else {
 
 Write-Host ""
 if ($found) {
-  Write-Host "RESULT: NON-COMPLIANT"
+  Write-Host "RESULT: NON-COMPLIANT - OpenClaw detected"
+  # Create marker file for the zsh wrapper
+  New-Item -Path "$($args[0])/1" -ItemType File -Force | Out-Null
   exit 1
 }
 else {
-  Write-Host "RESULT: COMPLIANT"
+  Write-Host "RESULT: COMPLIANT - No OpenClaw found"
   exit 0
 }

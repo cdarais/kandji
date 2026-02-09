@@ -1,5 +1,5 @@
-. "$($args[0])/functions.ps1"
-. "$($args[0])/variables.ps1"
+. "$PSScriptRoot/functions.ps1"
+. "$PSScriptRoot/variables.ps1"
 
 Write-Host "attempting to resolve discrepencies"
 
