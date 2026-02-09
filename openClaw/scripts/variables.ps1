@@ -1,4 +1,3 @@
-# Display name
 $script:appName = "OpenClaw"
 
 # Process / command-line markers (substring match against full `ps ... args` line)
