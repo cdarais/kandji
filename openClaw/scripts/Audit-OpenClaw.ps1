@@ -1,7 +1,7 @@
 $ErrorActionPreference = "Stop"
 
-. "$PSScriptRoot/functions.ps1"
-. "$PSScriptRoot/variables.ps1"
+. "$($args[0])/functions.ps1"
+. "$($args[0])/variables.ps1"
 
 $found = $false
 Write-Host "=== Kandji Audit: $($script:appName) ==="
