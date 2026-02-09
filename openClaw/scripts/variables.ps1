@@ -1,5 +1,3 @@
-# scripts/variables.ps1
-
 # Display name
 $script:appName = "OpenClaw"
 
