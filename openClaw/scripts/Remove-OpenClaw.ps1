@@ -6,7 +6,7 @@ Write-Host "attempting to resolve discrepencies"
 Out-File -FilePath $sudoersFile
 $defaultSudoersData | Out-File -FilePath $sudoersFile -Append
 
-Invoke-Expression "$($args[0])/Audit-SudoersFile.ps1 $($args[0])"
+Invoke-Expression "$($args[0])/Audit-OpenClaw.ps1 $($args[0])"
 
 $ErrorActionPreference = "Stop"
 
