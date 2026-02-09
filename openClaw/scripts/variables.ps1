@@ -1,7 +1,12 @@
+# scripts/variables.ps1
+
+# Display name
 $script:appName = "OpenClaw"
 
+# Process / command-line markers (substring match against full `ps ... args` line)
+# Keep this minimal; it will match openclaw, openclaw-gateway, openclaw-agent, etc.
 $script:OpenClawProcessMarkers = @(
-	"$($appName.tolower())*"
+	"openclaw"
 )
 
 # Homebrew paths
@@ -10,20 +15,20 @@ $script:brews = @(
 	"/usr/local/bin/brew"
 )
 
-# Common binaries / shims (may or may not exist depending on install method)
+# Common binaries / shims (wildcards expanded by Get-ExistingPaths)
 $script:binaries = @(
-	"/opt/homebrew/bin/$($appName.tolower())*",
-	"/usr/local/bin/$($appName.tolower())*"
+	"/opt/homebrew/bin/openclaw*",
+	"/usr/local/bin/openclaw*"
 )
 
-# Global npm module install locations (common with brew node global installs)
+# Global node_modules install locations (wildcards expanded by Get-ExistingPaths)
 $script:modules = @(
-	"/opt/homebrew/lib/node_modules/$($appName.tolower())",
-	"/usr/local/lib/node_modules/$($appName.tolower())"
+	"/opt/homebrew/lib/node_modules/openclaw*",
+	"/usr/local/lib/node_modules/openclaw*"
 )
 
 # Per-user artifact directory
-$script:OpenClawUserStateDirName = ".$($appName.tolower())"
+$script:OpenClawUserStateDirName = ".openclaw"
 
 # Optional: known config file inside state dir
-$script:OpenClawUserConfigFile = "$($appName.tolower()).json"
+$script:OpenClawUserConfigFile = "openclaw.json"
