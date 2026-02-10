@@ -4,7 +4,15 @@ $ErrorActionPreference = "Stop"
 . "$($args[0])/functions.ps1"
 . "$($args[0])/variables.ps1"
 
+$consoleUser = Get-ConsoleUser
+
 Write-Host "=== Kandji Remediation: $($script:appName) ==="
+if ($consoleUser) {
+    Write-Info "Running brew commands as console user: $consoleUser"
+}
+else {
+    Write-Warn "Could not determine console user - brew commands may fail"
+}
 
 # 1) Stop processes (best-effort; matches patterns to catch all OpenClaw processes)
 Stop-OpenClawProcesses
@@ -17,10 +25,12 @@ if ($brew) {
     # Check and remove formula (both openclaw and open-claw)
     $formulasToRemove = @("openclaw", "open-claw")
     foreach ($formula in $formulasToRemove) {
-        if (Test-BrewHasFormula -BrewPath $brew -FormulaName $formula) {
+        if (Test-BrewHasFormula -BrewPath $brew -FormulaName $formula -User $consoleUser) {
             Write-Info "Uninstalling '$formula' formula via Homebrew..."
             try {
-                & $brew uninstall --force --ignore-dependencies $formula 2>&1 | Out-Host
+                $cmd = "'$brew' uninstall --force --ignore-dependencies '$formula' 2>&1"
+                $output = Invoke-AsUser -User $consoleUser -Command $cmd
+                Write-Host $output
                 Write-Ok "brew uninstall --force $formula (formula) executed"
             }
             catch {
@@ -30,26 +40,30 @@ if ($brew) {
     }
     
     # Get all OpenClaw-related casks
-    $casksToRemove = Get-InstalledOpenClawCasks -BrewPath $brew
+    $casksToRemove = Get-InstalledOpenClawCasks -BrewPath $brew -User $consoleUser
     if ($casksToRemove.Count -gt 0) {
         Write-Info "Found OpenClaw casks to remove: $($casksToRemove -join ', ')"
         foreach ($cask in $casksToRemove) {
             Write-Info "Uninstalling '$cask' cask via Homebrew..."
             try {
                 # Try with --zap first to remove all associated files
-                & $brew uninstall --cask --zap --force $cask 2>&1 | Out-Host
-                Write-Ok "brew uninstall --cask --zap --force $cask executed"
+                $cmd = "'$brew' uninstall --cask --zap --force '$cask' 2>&1"
+                $output = Invoke-AsUser -User $consoleUser -Command $cmd
+                Write-Host $output
+                
+                # Check if it actually worked
+                if ($output -match "Error|error") {
+                    Write-Warn "brew uninstall --zap had errors, trying without --zap"
+                    # Fallback without --zap
+                    $cmd = "'$brew' uninstall --cask --force '$cask' 2>&1"
+                    $output = Invoke-AsUser -User $consoleUser -Command $cmd
+                    Write-Host $output
+                }
+                
+                Write-Ok "brew uninstall cask '$cask' executed"
             }
             catch {
-                Write-Warn "brew uninstall --zap failed, trying without --zap: $($_.Exception.Message)"
-                try {
-                    # Fallback without --zap
-                    & $brew uninstall --cask --force $cask 2>&1 | Out-Host
-                    Write-Ok "brew uninstall --cask --force $cask executed"
-                }
-                catch {
-                    Write-Warn "brew uninstall (cask) failed: $($_.Exception.Message)"
-                }
+                Write-Warn "brew uninstall (cask) failed: $($_.Exception.Message)"
             }
         }
     }
@@ -58,9 +72,12 @@ if ($brew) {
     }
     
     # Verify removal
-    $remainingCasks = Get-InstalledOpenClawCasks -BrewPath $brew
+    $remainingCasks = Get-InstalledOpenClawCasks -BrewPath $brew -User $consoleUser
     if ($remainingCasks.Count -gt 0) {
         Write-Warn "Some casks remain after uninstall attempt: $($remainingCasks -join ', ')"
+    }
+    else {
+        Write-Ok "All OpenClaw casks successfully removed from Homebrew."
     }
 }
 else {

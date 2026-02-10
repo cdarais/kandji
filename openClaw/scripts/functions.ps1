@@ -1,3 +1,5 @@
+# Helper Functions for OpenClaw Detection and Removal
+
 function Write-Info {
 	param([string]$Message)
 	Write-Host "[INFO] $Message" -ForegroundColor Cyan
@@ -16,6 +18,38 @@ function Write-Fail {
 function Write-Warn {
 	param([string]$Message)
 	Write-Host "[WARN] $Message" -ForegroundColor Yellow
+}
+
+function Get-ConsoleUser {
+	# Get the currently logged in user (not root)
+	try {
+		$user = (& /usr/bin/stat -f%Su /dev/console 2>$null)
+		if ($user -and $user -ne "root" -and $user -ne "_mbsetupuser") {
+			return $user
+		}
+	}
+	catch {
+		Write-Warn "Could not determine console user"
+	}
+	return $null
+}
+
+function Invoke-AsUser {
+	param(
+		[string]$User,
+		[string]$Command
+	)
+    
+	if ($User) {
+		# Run command as the actual user, not root
+		$output = & /usr/bin/su - $User -c $Command 2>&1
+		return $output
+	}
+	else {
+		# Fallback to running as current user
+		$output = Invoke-Expression $Command 2>&1
+		return $output
+	}
 }
 
 function Get-BrewPath {
@@ -88,11 +122,13 @@ function Stop-OpenClawProcesses {
 function Test-BrewHasFormula {
 	param(
 		[string]$BrewPath,
-		[string]$FormulaName
+		[string]$FormulaName,
+		[string]$User
 	)
 	try {
-		$installed = & $BrewPath list --formula 2>$null
-		return ($installed -contains $FormulaName)
+		$cmd = "'$BrewPath' list --formula 2>/dev/null"
+		$installed = Invoke-AsUser -User $User -Command $cmd
+		return ($installed -match $FormulaName)
 	}
 	catch {
 		return $false
@@ -102,10 +138,12 @@ function Test-BrewHasFormula {
 function Test-BrewHasCask {
 	param(
 		[string]$BrewPath,
-		[string]$CaskName
+		[string]$CaskName,
+		[string]$User
 	)
 	try {
-		$installed = & $BrewPath list --cask 2>&1 | Out-String
+		$cmd = "'$BrewPath' list --cask 2>/dev/null"
+		$installed = Invoke-AsUser -User $User -Command $cmd
 		# Check for both the cask name and variations
 		return ($installed -match $CaskName)
 	}
@@ -115,17 +153,20 @@ function Test-BrewHasCask {
 }
 
 function Get-InstalledOpenClawCasks {
-	param([string]$BrewPath)
+	param(
+		[string]$BrewPath,
+		[string]$User
+	)
 	$casks = @()
 	try {
-		$allCasks = & $BrewPath list --cask 2>&1 | Out-String
+		$cmd = "'$BrewPath' list --cask 2>/dev/null"
+		$allCasks = Invoke-AsUser -User $User -Command $cmd
+        
 		# Match both 'openclaw' and 'open-claw' variations
 		if ($allCasks -match "openclaw|open-claw") {
-			$caskList = & $BrewPath list --cask 2>$null
-			foreach ($cask in $caskList) {
-				if ($cask -match "openclaw|open-claw") {
-					$casks += $cask
-				}
+			$caskArray = $allCasks -split "`n" | Where-Object { $_ -match "openclaw|open-claw" }
+			foreach ($cask in $caskArray) {
+				$casks += $cask.Trim()
 			}
 		}
 	}
