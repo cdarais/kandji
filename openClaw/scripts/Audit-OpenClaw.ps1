@@ -1,7 +1,8 @@
+$ErrorActionPreference = "Stop"
+
+# Source the helper files passed via argument
 . "$($args[0])/functions.ps1"
 . "$($args[0])/variables.ps1"
-
-$ErrorActionPreference = "Stop"
 
 $found = $false
 Write-Host "=== Kandji Audit: $($script:appName) ==="
@@ -25,12 +26,31 @@ if ($brew) {
 
   $hasFormula = $false
   $hasCask = $false
+  $foundCasks = @()
 
-  try { $hasFormula = ((& $brew list --formula 2>$null) -contains "openclaw") } catch {}
-  try { $hasCask = ((& $brew list --cask 2>$null) -contains "openclaw") } catch {}
+  # Check formulas
+  try { 
+    $formulas = & $brew list --formula 2>$null
+    $hasFormula = ($formulas -contains "openclaw") -or ($formulas -contains "open-claw")
+  }
+  catch {}
+
+  # Check casks - look for any openclaw variations
+  try { 
+    $casks = & $brew list --cask 2>$null
+    $foundCasks = $casks | Where-Object { $_ -match "openclaw|open-claw" }
+    $hasCask = ($foundCasks.Count -gt 0)
+  }
+  catch {}
 
   if ($hasFormula -or $hasCask) {
-    Write-Fail "Homebrew package installed: openclaw (formula=$hasFormula, cask=$hasCask)"
+    Write-Fail "Homebrew package installed:"
+    if ($hasFormula) {
+      Write-Host "  Formula: openclaw or open-claw"
+    }
+    if ($hasCask) {
+      Write-Host "  Cask(s): $($foundCasks -join ', ')"
+    }
     $found = $true
   }
   else {
@@ -51,6 +71,18 @@ if ($bins.Count -gt 0) {
 }
 else {
   Write-Ok "No OpenClaw binaries/shims found in common paths."
+}
+
+# 3.5) Application directories (cask installs)
+Write-Info "Checking application directories..."
+$apps = Get-ExistingPaths -Paths $script:applications
+if ($apps.Count -gt 0) {
+  Write-Fail "Found OpenClaw application directories:"
+  $apps | ForEach-Object { Write-Host "  $_" }
+  $found = $true
+}
+else {
+  Write-Ok "No OpenClaw applications found."
 }
 
 # 4) Global node_modules openclaw
@@ -81,7 +113,7 @@ Write-Host ""
 if ($found) {
   Write-Host "RESULT: NON-COMPLIANT - OpenClaw detected"
   # Create marker file for the zsh wrapper
-  # Removed marker file creation line to avoid issues in Kandji environment
+  New-Item -Path "$($args[0])/1" -ItemType File -Force | Out-Null
   exit 1
 }
 else {

@@ -1,31 +1,45 @@
+# OpenClaw Detection Variables
+$ErrorActionPreference = "Stop"
+
+# Application name for logging
 $script:appName = "OpenClaw"
 
-# Process / command-line markers (substring match against full `ps ... args` line)
-# Keep this minimal; it will match openclaw, openclaw-gateway, openclaw-agent, etc.
-$script:OpenClawProcessMarkers = @(
-	"openclaw"
+# Process patterns to detect OpenClaw
+$script:processPatterns = @(
+	"*openclaw*",
+	"*open-claw*"
 )
 
-# Homebrew paths
-$script:brews = @(
-	"/opt/homebrew/bin/brew",
-	"/usr/local/bin/brew"
-)
-
-# Common binaries / shims (wildcards expanded by Get-ExistingPaths)
+# Binary/executable paths to check
 $script:binaries = @(
-	"/opt/homebrew/bin/openclaw*",
-	"/usr/local/bin/openclaw*"
+	"/usr/local/bin/openclaw",
+	"/opt/homebrew/bin/openclaw",
+	"/usr/local/bin/open-claw",
+	"/opt/homebrew/bin/open-claw",
+	"$env:HOME/.local/bin/openclaw",
+	"$env:HOME/bin/openclaw"
 )
 
-# Global node_modules install locations (wildcards expanded by Get-ExistingPaths)
+# Application directories (common cask install locations)
+$script:applications = @(
+	"/Applications/OpenClaw.app",
+	"/Applications/Open-Claw.app",
+	"/Applications/openclaw.app",
+	"/Applications/open-claw.app",
+	"$env:HOME/Applications/OpenClaw.app",
+	"$env:HOME/Applications/Open-Claw.app"
+)
+
+# Global node_modules paths to check
 $script:modules = @(
-	"/opt/homebrew/lib/node_modules/openclaw*",
-	"/usr/local/lib/node_modules/openclaw*"
+	"/usr/local/lib/node_modules/openclaw",
+	"/opt/homebrew/lib/node_modules/openclaw",
+	"/usr/local/lib/node_modules/@openclaw/*",
+	"/opt/homebrew/lib/node_modules/@openclaw/*"
 )
 
-# Per-user artifact directory
-$script:OpenClawUserStateDirName = ".openclaw"
-
-# Optional: known config file inside state dir
-$script:OpenClawUserConfigFile = "openclaw.json"
+# Common Homebrew paths
+$script:brewPaths = @(
+	"/opt/homebrew/bin/brew",  # Apple Silicon
+	"/usr/local/bin/brew"      # Intel
+)
