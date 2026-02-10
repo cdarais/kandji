@@ -84,6 +84,54 @@ else {
     Write-Ok "Homebrew not found in standard paths."
 }
 
+# 2.5) Uninstall via npm if present
+$npm = Get-NpmPath
+if ($npm) {
+    Write-Info "Checking npm for globally installed packages..."
+    
+    $npmPackages = Get-InstalledOpenClawNpmPackages -NpmPath $npm -User $consoleUser
+    if ($npmPackages.Count -gt 0) {
+        Write-Info "Found OpenClaw npm packages to remove: $($npmPackages -join ', ')"
+        foreach ($package in $npmPackages) {
+            Write-Info "Uninstalling '$package' via npm..."
+            try {
+                $cmd = "'$npm' uninstall -g '$package' 2>&1"
+                $output = Invoke-AsUser -User $consoleUser -Command $cmd
+                Write-Host $output
+                
+                # Check if it actually worked
+                if ($output -match "removed|uninstalled") {
+                    Write-Ok "npm uninstall -g '$package' succeeded"
+                }
+                elseif ($output -match "not installed|ERR!") {
+                    Write-Warn "npm uninstall had issues: $output"
+                }
+                else {
+                    Write-Ok "npm uninstall -g '$package' executed"
+                }
+            }
+            catch {
+                Write-Warn "npm uninstall failed: $($_.Exception.Message)"
+            }
+        }
+        
+        # Verify removal
+        $remainingPackages = Get-InstalledOpenClawNpmPackages -NpmPath $npm -User $consoleUser
+        if ($remainingPackages.Count -gt 0) {
+            Write-Warn "Some npm packages remain after uninstall attempt: $($remainingPackages -join ', ')"
+        }
+        else {
+            Write-Ok "All OpenClaw npm packages successfully removed."
+        }
+    }
+    else {
+        Write-Ok "No OpenClaw-related npm packages found."
+    }
+}
+else {
+    Write-Ok "npm not found in standard paths."
+}
+
 # 3) Remove per-user state directories (~/.openclaw)
 Write-Info "Removing per-user OpenClaw state (~/.openclaw)..."
 $userState = Find-OpenClawUserStateDirs

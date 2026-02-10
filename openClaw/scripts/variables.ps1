@@ -30,7 +30,7 @@ $script:applications = @(
 	"$env:HOME/Applications/Open-Claw.app"
 )
 
-# Global node_modules paths to check
+# Global node_modules paths to check (Homebrew and system)
 $script:modules = @(
 	"/usr/local/lib/node_modules/openclaw",
 	"/opt/homebrew/lib/node_modules/openclaw",
@@ -42,4 +42,18 @@ $script:modules = @(
 $script:brewPaths = @(
 	"/opt/homebrew/bin/brew",  # Apple Silicon
 	"/usr/local/bin/brew"      # Intel
+)
+
+# Common npm paths
+$script:npmPaths = @(
+	"/usr/local/bin/npm",
+	"/opt/homebrew/bin/npm",
+	"$env:HOME/.nvm/versions/node/*/bin/npm"
+)
+
+# Common node paths (for getting the right npm)
+$script:nodePaths = @(
+	"/usr/local/bin/node",
+	"/opt/homebrew/bin/node",
+	"$env:HOME/.nvm/versions/node/*/bin/node"
 )

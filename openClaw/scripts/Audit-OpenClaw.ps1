@@ -42,14 +42,14 @@ if ($brew) {
 		$formulas = Invoke-AsUser -User $consoleUser -Command $cmd
 		$hasFormula = ($formulas -match "openclaw|open-claw")
 	}
-	catch {}
+ catch {}
 
 	# Check casks - look for any openclaw variations
 	try { 
 		$foundCasks = Get-InstalledOpenClawCasks -BrewPath $brew -User $consoleUser
 		$hasCask = ($foundCasks.Count -gt 0)
 	}
-	catch {}
+ catch {}
 
 	if ($hasFormula -or $hasCask) {
 		Write-Fail "Homebrew package installed:"
@@ -67,6 +67,25 @@ if ($brew) {
 }
 else {
 	Write-Ok "Homebrew not found in standard paths."
+}
+
+# 2.5) npm global packages installed
+$npm = Get-NpmPath
+if ($npm) {
+	Write-Info "Checking npm for globally installed 'openclaw' packages..."
+    
+	$npmPackages = Get-InstalledOpenClawNpmPackages -NpmPath $npm -User $consoleUser
+	if ($npmPackages.Count -gt 0) {
+		Write-Fail "npm global packages installed:"
+		$npmPackages | ForEach-Object { Write-Host "  $_" }
+		$found = $true
+	}
+	else {
+		Write-Ok "No npm global packages matching 'openclaw' found."
+	}
+}
+else {
+	Write-Ok "npm not found in standard paths."
 }
 
 # 3) Known binary paths

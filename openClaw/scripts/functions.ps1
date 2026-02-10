@@ -61,6 +61,104 @@ function Get-BrewPath {
 	return $null
 }
 
+function Get-NpmPath {
+	# Try to find npm in common locations
+	foreach ($path in $script:npmPaths) {
+		if ($path -like "*`**") {
+			# Handle wildcards (like nvm paths)
+			try {
+				$resolved = Get-Item $path -ErrorAction SilentlyContinue | Select-Object -First 1
+				if ($resolved) {
+					return $resolved.FullName
+				}
+			}
+			catch {
+				continue
+			}
+		}
+		elseif (Test-Path $path) {
+			return $path
+		}
+	}
+    
+	# Try to find npm via 'which' command as the console user
+	$consoleUser = Get-ConsoleUser
+	if ($consoleUser) {
+		try {
+			$npmPath = Invoke-AsUser -User $consoleUser -Command "which npm 2>/dev/null"
+			if ($npmPath -and (Test-Path $npmPath.Trim())) {
+				return $npmPath.Trim()
+			}
+		}
+		catch {
+			# Continue to next method
+		}
+	}
+    
+	return $null
+}
+
+function Test-NpmHasPackage {
+	param(
+		[string]$NpmPath,
+		[string]$PackageName,
+		[string]$User
+	)
+	try {
+		$cmd = "'$NpmPath' list -g --depth=0 2>/dev/null | grep '$PackageName'"
+		$output = Invoke-AsUser -User $User -Command $cmd
+		return ($output -match $PackageName)
+	}
+	catch {
+		return $false
+	}
+}
+
+function Get-InstalledOpenClawNpmPackages {
+	param(
+		[string]$NpmPath,
+		[string]$User
+	)
+	$packages = @()
+	try {
+		# Get list of globally installed packages
+		$cmd = "'$NpmPath' list -g --depth=0 --json 2>/dev/null"
+		$output = Invoke-AsUser -User $User -Command $cmd
+        
+		if ($output) {
+			# Parse JSON output
+			try {
+				$json = $output | ConvertFrom-Json
+				if ($json.dependencies) {
+					$json.dependencies.PSObject.Properties | ForEach-Object {
+						if ($_.Name -match "openclaw|open-claw") {
+							$packages += $_.Name
+						}
+					}
+				}
+			}
+			catch {
+				# Fallback to grep if JSON parsing fails
+				$cmd = "'$NpmPath' list -g --depth=0 2>/dev/null"
+				$output = Invoke-AsUser -User $User -Command $cmd
+				$lines = $output -split "`n"
+				foreach ($line in $lines) {
+					if ($line -match "openclaw|open-claw") {
+						# Extract package name (format is usually "├── package@version" or "└── package@version")
+						if ($line -match "[├└]── ([^@\s]+)") {
+							$packages += $matches[1]
+						}
+					}
+				}
+			}
+		}
+	}
+	catch {
+		Write-Warn "Error checking npm packages: $($_.Exception.Message)"
+	}
+	return $packages
+}
+
 function Find-OpenClawProcesses {
 	$hits = @()
 	try {
