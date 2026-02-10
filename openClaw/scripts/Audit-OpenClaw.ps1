@@ -1,7 +1,7 @@
-$ErrorActionPreference = "Stop"
-
 . "$($args[0])/functions.ps1"
 . "$($args[0])/variables.ps1"
+
+$ErrorActionPreference = "Stop"
 
 $found = $false
 Write-Host "=== Kandji Audit: $($script:appName) ==="
@@ -81,7 +81,7 @@ Write-Host ""
 if ($found) {
   Write-Host "RESULT: NON-COMPLIANT - OpenClaw detected"
   # Create marker file for the zsh wrapper
-  New-Item -Path "$($args[0])/1" -ItemType File -Force | Out-Null
+  # Removed marker file creation line to avoid issues in Kandji environment
   exit 1
 }
 else {

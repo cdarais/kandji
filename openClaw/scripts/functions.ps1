@@ -98,22 +98,53 @@ function Find-OpenClawUserStateDirs {
 	return $hits
 }
 
-function Test-BrewHasFormula {
+function Get-BrewPackageStatus {
 	param(
 		[string]$BrewPath,
-		[string]$FormulaName
+		[string]$Name
 	)
 
-	if (-not $BrewPath) { return $false }
+	$status = [pscustomobject]@{
+		BrewPath   = $BrewPath
+		Name       = $Name
+		HasFormula = $false
+		HasCask    = $false
+	}
+
+	if (-not $BrewPath) { return $status }
 
 	try {
 		$formulae = & $BrewPath list --formula 2>$null
-		return ($formulae -contains $FormulaName)
+		$status.HasFormula = ($formulae -contains $Name)
 	}
  catch {
-		Write-Warn "brew list failed: $($_.Exception.Message)"
-		return $false
+		# ignore
 	}
+
+	try {
+		$casks = & $BrewPath list --cask 2>$null
+		$status.HasCask = ($casks -contains $Name)
+	}
+ catch {
+		# ignore
+	}
+
+	return $status
+}
+
+function Uninstall-BrewPackageBestEffort {
+	param(
+		[string]$BrewPath,
+		[string]$Name
+	)
+
+	if (-not $BrewPath) { return }
+
+	# Formula uninstall
+	try { & $BrewPath uninstall --force $Name 2>$null | Out-Host } catch {}
+
+	# Cask uninstall
+	try { & $BrewPath uninstall --cask --force $Name 2>$null | Out-Host } catch {}
 }
 
 function Stop-OpenClawProcesses {

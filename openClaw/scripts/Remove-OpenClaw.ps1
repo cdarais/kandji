@@ -11,19 +11,16 @@ Stop-OpenClawProcesses
 # 2) Uninstall via Homebrew if present
 $brew = Get-BrewPath
 if ($brew) {
-    Write-Info "Checking Homebrew for installed formula 'openclaw'…"
-    if (Test-BrewHasFormula -BrewPath $brew -FormulaName "openclaw") {
-        Write-Info "Uninstalling 'openclaw' via Homebrew…"
-        try {
-            & $brew uninstall --force openclaw 2>$null | Out-Host
-            Write-Ok "brew uninstall --force openclaw executed"
-        }
-        catch {
-            Write-Warn "brew uninstall failed: $($_.Exception.Message)"
-        }
+    Write-Info "Checking Homebrew for installed package 'openclaw' (formula OR cask)…"
+    $brewStatus = Get-BrewPackageStatus -BrewPath $brew -Name "openclaw"
+
+    if ($brewStatus.HasFormula -or $brewStatus.HasCask) {
+        Write-Info "Uninstalling 'openclaw' via Homebrew (best-effort)…"
+        Uninstall-BrewPackageBestEffort -BrewPath $brew -Name "openclaw"
+        Write-Ok "brew uninstall attempted (formula=$($brewStatus.HasFormula), cask=$($brewStatus.HasCask))"
     }
     else {
-        Write-Ok "No brew formula 'openclaw' installed."
+        Write-Ok "No Homebrew package named 'openclaw' installed."
     }
 }
 else {
@@ -65,5 +62,4 @@ Stop-OpenClawProcesses
 
 Write-Host "Remediation complete."
 
-
-Invoke-Expression "$($args[0])/Audit-OpenClaw.ps1 $($args[0])"
+exit 0
