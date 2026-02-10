@@ -11,7 +11,8 @@ $items.Add((GetRemovalItems -excludedUsers $excludedUsers -folderChecks $folderC
 foreach ($i in $items ) {
 	if ($i.GetType().Name -eq "FileInfo") {
 		$i | Remove-Item -Force
-	} else {
+	}
+ else {
 		$i | Remove-Item -Recurse -Force
 	}
 }

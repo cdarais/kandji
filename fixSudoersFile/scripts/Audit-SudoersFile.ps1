@@ -3,10 +3,11 @@
 
 $currentSudoersData = Get-Content -Path $sudoersFile
 
-"Comparing Data"
+Write-Host "Comparing Data"
 if (compareRootPermissions -currentData $currentSudoersData -defaultData $defaultSudoersData) {
 	Write-Host "no discrepency found"
-} else {
+}
+else {
 	Write-Host "discrepency found"
 	New-Item -Path "$($args[0])/1" -ItemType File | Out-Null
 }

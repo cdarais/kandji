@@ -5,6 +5,7 @@
 if ( (checkForFonts -Fonts $fonts -Libraries $libraries) ) {
 	Write-Host "missing font(s) detected"
 	New-Item -Path "$($args[0])/1" -ItemType File | Out-Null
-} else {
+}
+else {
 	Write-Host "no missing fonts detected"
 }

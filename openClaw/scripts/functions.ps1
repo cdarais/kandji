@@ -39,7 +39,7 @@ function Invoke-AsUser {
 		[string]$User,
 		[string]$Command
 	)
-    
+
 	if ($User) {
 		# Run command as the actual user, not root
 		$output = & /usr/bin/su - $User -c $Command 2>&1
@@ -80,7 +80,7 @@ function Get-NpmPath {
 			return $path
 		}
 	}
-    
+
 	# Try to find npm via 'which' command as the console user
 	$consoleUser = Get-ConsoleUser
 	if ($consoleUser) {
@@ -94,7 +94,7 @@ function Get-NpmPath {
 			# Continue to next method
 		}
 	}
-    
+
 	return $null
 }
 
@@ -124,7 +124,7 @@ function Get-InstalledOpenClawNpmPackages {
 		# Get list of globally installed packages
 		$cmd = "'$NpmPath' list -g --depth=0 --json 2>/dev/null"
 		$output = Invoke-AsUser -User $User -Command $cmd
-        
+
 		if ($output) {
 			# Parse JSON output
 			try {
@@ -164,9 +164,9 @@ function Find-OpenClawProcesses {
 	try {
 		$allProcs = Get-Process -ErrorAction SilentlyContinue
 		foreach ($pattern in $script:processPatterns) {
-			$matches = $allProcs | Where-Object { 
-				$_.ProcessName -like $pattern -or 
-				$_.Path -like $pattern 
+			$matches = $allProcs | Where-Object {
+				$_.ProcessName -like $pattern -or
+				$_.Path -like $pattern
 			}
 			foreach ($proc in $matches) {
 				$info = "$($proc.ProcessName) (PID: $($proc.Id))"
@@ -189,9 +189,9 @@ function Stop-OpenClawProcesses {
 	try {
 		$allProcs = Get-Process -ErrorAction SilentlyContinue
 		foreach ($pattern in $script:processPatterns) {
-			$matches = $allProcs | Where-Object { 
-				$_.ProcessName -like $pattern -or 
-				$_.Path -like $pattern 
+			$matches = $allProcs | Where-Object {
+				$_.ProcessName -like $pattern -or
+				$_.Path -like $pattern
 			}
 			foreach ($proc in $matches) {
 				try {
@@ -208,7 +208,7 @@ function Stop-OpenClawProcesses {
 	catch {
 		Write-Warn "Error stopping processes: $($_.Exception.Message)"
 	}
-    
+
 	if ($stopped -eq 0) {
 		Write-Ok "No OpenClaw processes to stop."
 	}
@@ -259,7 +259,7 @@ function Get-InstalledOpenClawCasks {
 	try {
 		$cmd = "'$BrewPath' list --cask 2>/dev/null"
 		$allCasks = Invoke-AsUser -User $User -Command $cmd
-        
+
 		# Match both 'openclaw' and 'open-claw' variations
 		if ($allCasks -match "openclaw|open-claw") {
 			$caskArray = $allCasks -split "`n" | Where-Object { $_ -match "openclaw|open-claw" }

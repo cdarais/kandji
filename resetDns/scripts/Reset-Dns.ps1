@@ -2,7 +2,8 @@ Write-Host "resetting dns"
 
 try {
 	dscacheutil -flushcache
-} catch {}
+}
+catch {}
 
 try {
 	killall -HUP mDNSResponder

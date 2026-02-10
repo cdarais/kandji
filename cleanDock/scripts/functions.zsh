@@ -5,7 +5,7 @@ waitForDesktop () {
 		echo " + Dock not running, waiting [$delay] seconds"
 		sleep $delay
 	done
-	
+
 	echo "Dock is here, lets carry on"
 }
 
@@ -21,13 +21,13 @@ runAsUser () {
 
 installLatestDockUtil () {
 	uri=$(curl -sL  https://api.github.com/repos/kcrawford/dockutil/releases/latest | grep "browser_download_url" | cut -d":" -f3 | tr -d \")
-	
+
 	pkgLocation="/var/tmp/dockutil.pkg"
 
 	echo "https:$uri"
 
 	curl -Ls "https:$uri" -o "$pkgLocation"
-	
+
 	sudo -E /usr/sbin/installer -pkg "$pkgLocation" -target /
 
 	sudo rm -rf "$pkgLocation"
@@ -42,7 +42,7 @@ checkAndAddItem () {
 	fi
 
 	application="/System$application"
-	
+
 	if [[ -e $application ]]
 	then
 		runAsUser /usr/local/bin/dockutil --add $application --no-restart --allhomes --replacing $1

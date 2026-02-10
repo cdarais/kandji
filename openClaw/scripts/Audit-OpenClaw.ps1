@@ -37,7 +37,7 @@ if ($brew) {
 	$foundCasks = @()
 
 	# Check formulas
-	try { 
+	try {
 		$cmd = "'$brew' list --formula 2>/dev/null"
 		$formulas = Invoke-AsUser -User $consoleUser -Command $cmd
 		$hasFormula = ($formulas -match "openclaw|open-claw")
@@ -45,7 +45,7 @@ if ($brew) {
  catch {}
 
 	# Check casks - look for any openclaw variations
-	try { 
+	try {
 		$foundCasks = Get-InstalledOpenClawCasks -BrewPath $brew -User $consoleUser
 		$hasCask = ($foundCasks.Count -gt 0)
 	}
@@ -73,7 +73,7 @@ else {
 $npm = Get-NpmPath
 if ($npm) {
 	Write-Info "Checking npm for globally installed 'openclaw' packages..."
-    
+
 	$npmPackages = Get-InstalledOpenClawNpmPackages -NpmPath $npm -User $consoleUser
 	if ($npmPackages.Count -gt 0) {
 		Write-Fail "npm global packages installed:"

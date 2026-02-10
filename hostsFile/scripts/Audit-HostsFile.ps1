@@ -13,7 +13,8 @@ if (Test-Path -Path $dockerApp) {
 
 if (compareHostsData -currentData $currentHostsData -defaultData $defaultHostsData) {
 	Write-Host "no discrepency found"
-} else {
+}
+else {
 	Write-Host "discrepency found"
 	New-Item -Path "$($args[0])/1" -ItemType File | Out-Null
 }

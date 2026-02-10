@@ -1,1 +1,0 @@
-sudo /usr/local/bin/kandji run --reset-daily

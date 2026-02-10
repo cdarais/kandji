@@ -55,7 +55,7 @@ function checkProfile {
 
 function checkApp {
 	param()
-	
+
 	foreach ($a in $appPaths) {
 		if (Test-Path -Path "$a/$appName") {
 			"install location $a/$appName" | writeOut
@@ -72,7 +72,7 @@ function checkVersion {
 	param ()
 
 	$versionString = $null
-	
+
 	foreach ($a in $appPaths) {
 		if (Test-Path -Path "$a/$appName") {
 			$versionString = sudo defaults read "$a/$appName/Contents/Info.plist" CFBundleShortVersionString

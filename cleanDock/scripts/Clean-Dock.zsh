@@ -16,7 +16,7 @@ then
 
 	echo "Removing Dock Persistent Apps"
 	runAsUser /usr/local/bin/dockutil --remove all --no-restart --allhomes
-	
+
 	echo "Adding Apps to Dock"
 	for i in "${dockApps[@]}"
 	do
@@ -25,7 +25,7 @@ then
 
 	echo "Adding Downloads Stack"
 	runAsUser /usr/local/bin/dockutil --add '~/Downloads' --view auto --display stack --allhomes --no-restart
-		
+
 	echo "Showing finder path bar"
 	runAsUser /usr/bin/defaults write com.apple.finder ShowPathbar -bool "true"
 
@@ -34,7 +34,7 @@ then
 
 	echo "Setting up trash purge"
 	runAsUser /usr/bin/defaults write com.apple.finder FXRemoveOldTrashItems -bool "true"
-	
+
 	echo "Restarting Dock"
 	/usr/bin/killall Dock
 
