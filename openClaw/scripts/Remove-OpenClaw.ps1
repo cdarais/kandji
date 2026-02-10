@@ -1,19 +1,9 @@
 . "$($args[0])/functions.ps1"
 . "$($args[0])/variables.ps1"
 
-Write-Host "attempting to resolve discrepencies"
-
-Out-File -FilePath $sudoersFile
-$defaultSudoersData | Out-File -FilePath $sudoersFile -Append
-
-Invoke-Expression "$($args[0])/Audit-OpenClaw.ps1 $($args[0])"
-
 $ErrorActionPreference = "Stop"
 
-. "$PSScriptRoot/variables.ps1"
-. "$PSScriptRoot/functions.ps1"
-
-Write-Host "=== Kandji Remediation: $($script:appName) ==="
+Write-Host "=== remediation: $($script:appName) ==="
 
 # 1) Stop processes (best-effort; matches args so it catches node-running gateway too)
 Stop-OpenClawProcesses
